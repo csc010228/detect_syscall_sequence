@@ -15,9 +15,9 @@
 using namespace std;
 
 //获取所有tracepoint:syscalls:sys_enter_*的名字
-set<string> get_all_tracepoint_syscalls_sys_enter();
+set<string> get_all_tracepoint_syscalls_sys_enter(bool print_error);
 
 //获取所有tracepoint:syscalls:sys_exit_*的名字
-set<string> get_all_tracepoint_syscalls_sys_exit();
+set<string> get_all_tracepoint_syscalls_sys_exit(bool print_error);
 
 #endif //__BPF_H
