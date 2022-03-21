@@ -108,7 +108,7 @@
 * 只需要拷贝源代码，然后进入项目文件夹之后，输入`make`进行编译，会得到一个`dss`可执行文件，按照如下方式执行即可：
 
   ```she
-  ./dss test.txt detect.bt
+  ./dss example.txt test.bt
   ```
 
-  其中`test.txt`是要dss语言的源文件名，`detect.bt`是最终要生成的bt文件名
+  其中`example.txt`是要dss语言的源文件名，`test.bt`是最终要生成的bt文件名
