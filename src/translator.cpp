@@ -81,13 +81,13 @@ Translator::Translator()
 {
     detection_atom_=syscall_detection_atom::THREAD;
     //获取所有的tracepoint:syscalls:sys_enter_*探针并进行初始化
-    set<string> all_sys_enter_probes=get_all_tracepoint_syscalls_sys_enter();
+    set<string> all_sys_enter_probes=get_all_tracepoint_syscalls_sys_enter(true);
     for(auto i:all_sys_enter_probes)
     {
         syscall_probes_.insert(make_pair(i,syscall_probe(i)));
     }
     //获取所有的tracepoint:syscalls:sys_exit_*探针并进行初始化
-    set<string> all_sys_exit_probes=get_all_tracepoint_syscalls_sys_exit();
+    set<string> all_sys_exit_probes=get_all_tracepoint_syscalls_sys_exit(false);
     for(auto i:all_sys_exit_probes)
     {
         syscall_probes_.insert(make_pair(i,syscall_probe(i)));
