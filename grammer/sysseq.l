@@ -5,7 +5,7 @@
 //extern YYSTYPE yylval; // 必须放在#include "y.tab.h"前面
 #include "y.tab.h"
 %}
-delim           [\t\n]
+delim           [\f\v\r\t\n ]
 ws              [delim]+
 letter          [a-zA-Z]
 digit           [0-9]

@@ -15,11 +15,6 @@ tracepoint:syscalls:sys_enter_accept4
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_access
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_acct
 {
 	@states[pid,tid]=0;
@@ -35,12 +30,7 @@ tracepoint:syscalls:sys_enter_adjtimex
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_alarm
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_arch_prctl
+tracepoint:syscalls:sys_enter_arm64_personality
 {
 	@states[pid,tid]=0;
 }
@@ -80,16 +70,6 @@ tracepoint:syscalls:sys_enter_chdir
 	{
 		@states[pid,tid]=0;
 	}
-}
-
-tracepoint:syscalls:sys_enter_chmod
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_chown
-{
-	@states[pid,tid]=0;
 }
 
 tracepoint:syscalls:sys_enter_chroot
@@ -134,17 +114,17 @@ tracepoint:syscalls:sys_enter_clone3
 
 tracepoint:syscalls:sys_enter_close
 {
-	if(@states[pid,tid]==71)
+	if(@states[pid,tid]==77)
 	{
-		@states[pid,tid]=72;
+		@states[pid,tid]=78;
 	}
-	else if(@states[pid,tid]==65)
+	else if(@states[pid,tid]==68)
 	{
-		@states[pid,tid]=66;
+		@states[pid,tid]=69;
 	}
-	else if(@states[pid,tid]==35)
+	else if(@states[pid,tid]==38)
 	{
-		@states[pid,tid]=36;
+		@states[pid,tid]=39;
 	}
 	else if(@states[pid,tid]==29)
 	{
@@ -171,11 +151,6 @@ tracepoint:syscalls:sys_enter_copy_file_range
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_creat
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_delete_module
 {
 	@states[pid,tid]=0;
@@ -186,17 +161,7 @@ tracepoint:syscalls:sys_enter_dup
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_dup2
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_dup3
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_epoll_create
 {
 	@states[pid,tid]=0;
 }
@@ -208,13 +173,13 @@ tracepoint:syscalls:sys_enter_epoll_create1
 
 tracepoint:syscalls:sys_enter_epoll_ctl
 {
-	if(@states[pid,tid]==61)
+	if(@states[pid,tid]==64)
 	{
-		@states[pid,tid]=62;
+		@states[pid,tid]=65;
 	}
-	else if(@states[pid,tid]==54)
+	else if(@states[pid,tid]==57)
 	{
-		@states[pid,tid]=69;
+		@states[pid,tid]=75;
 	}
 	else if(@states[pid,tid]==25)
 	{
@@ -222,7 +187,7 @@ tracepoint:syscalls:sys_enter_epoll_ctl
 	}
 	else if(@states[pid,tid]==18)
 	{
-		@states[pid,tid]=33;
+		@states[pid,tid]=36;
 	}
 	else
 	{
@@ -232,104 +197,122 @@ tracepoint:syscalls:sys_enter_epoll_ctl
 
 tracepoint:syscalls:sys_enter_epoll_pwait
 {
-	if(@states[pid,tid]==92 && (args->epfd==4 && args->maxevents==128))
+	if(@states[pid,tid]==98 && (args->epfd==4 && args->maxevents==128))
 	{
 		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cd");
 		@states[pid,tid]=0;
 	}
-	else if(@states[pid,tid]==91 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==97 && (args->epfd==4 && args->maxevents==128))
 	{
-		@states[pid,tid]=92;
+		@states[pid,tid]=98;
 	}
-	else if(@states[pid,tid]==88 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==94 && (args->epfd==4 && args->maxevents==128))
 	{
 		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cd");
 		@states[pid,tid]=0;
 	}
-	else if(@states[pid,tid]==87 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==93 && (args->epfd==4 && args->maxevents==128))
 	{
-		@states[pid,tid]=88;
+		@states[pid,tid]=94;
 	}
-	else if(@states[pid,tid]==80 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==86 && (args->epfd==4 && args->maxevents==128))
 	{
 		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"mkdir");
 		@states[pid,tid]=0;
 	}
-	else if(@states[pid,tid]==79 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==85 && (args->epfd==4 && args->maxevents==128))
 	{
-		@states[pid,tid]=80;
+		@states[pid,tid]=86;
 	}
-	else if(@states[pid,tid]==75 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==81 && (args->epfd==4 && args->maxevents==128))
 	{
 		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"ls");
 		@states[pid,tid]=0;
 	}
-	else if(@states[pid,tid]==74 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==80 && (args->epfd==4 && args->maxevents==128))
 	{
-		@states[pid,tid]=75;
+		@states[pid,tid]=81;
 	}
-	else if(@states[pid,tid]==68)
-	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
-		@states[pid,tid]=0;
-	}
-	else if(@states[pid,tid]==67)
+	else if(@states[pid,tid]==73)
 	{
 		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
 		@states[pid,tid]=0;
 	}
-	else if(@states[pid,tid]==66)
+	else if(@states[pid,tid]==72)
 	{
-		@states[pid,tid]=67;
+		@states[pid,tid]=73;
 	}
-	else if(@states[pid,tid]==59 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==71)
+	{
+		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+		@states[pid,tid]=0;
+	}
+	else if(@states[pid,tid]==70)
+	{
+		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+		@states[pid,tid]=0;
+	}
+	else if(@states[pid,tid]==69)
+	{
+		@states[pid,tid]=70;
+	}
+	else if(@states[pid,tid]==62 && (args->epfd==4 && args->maxevents==128))
 	{
 		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"rm");
 		@states[pid,tid]=0;
 	}
-	else if(@states[pid,tid]==58 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==61 && (args->epfd==4 && args->maxevents==128))
 	{
-		@states[pid,tid]=59;
+		@states[pid,tid]=62;
 	}
-	else if(@states[pid,tid]==56)
+	else if(@states[pid,tid]==59)
 	{
-		@states[pid,tid]=52;
+		@states[pid,tid]=55;
 	}
-	else if(@states[pid,tid]==52)
+	else if(@states[pid,tid]==55)
 	{
 		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
 		@states[pid,tid]=0;
 	}
-	else if(@states[pid,tid]==50 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==53 && (args->epfd==4 && args->maxevents==128))
 	{
 		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"pwd");
 		@states[pid,tid]=0;
 	}
-	else if(@states[pid,tid]==49 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==52 && (args->epfd==4 && args->maxevents==128))
 	{
-		@states[pid,tid]=50;
+		@states[pid,tid]=53;
 	}
-	else if(@states[pid,tid]==47)
+	else if(@states[pid,tid]==50)
 	{
-		@states[pid,tid]=52;
+		@states[pid,tid]=55;
 	}
-	else if(@states[pid,tid]==44 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==47 && (args->epfd==4 && args->maxevents==128))
 	{
 		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"mkdir");
 		@states[pid,tid]=0;
 	}
-	else if(@states[pid,tid]==43 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==46 && (args->epfd==4 && args->maxevents==128))
 	{
-		@states[pid,tid]=44;
+		@states[pid,tid]=47;
 	}
-	else if(@states[pid,tid]==39 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==42 && (args->epfd==4 && args->maxevents==128))
 	{
 		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"ls");
 		@states[pid,tid]=0;
 	}
-	else if(@states[pid,tid]==38 && (args->epfd==4 && args->maxevents==128))
+	else if(@states[pid,tid]==41 && (args->epfd==4 && args->maxevents==128))
 	{
-		@states[pid,tid]=39;
+		@states[pid,tid]=42;
+	}
+	else if(@states[pid,tid]==34)
+	{
+		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+		@states[pid,tid]=0;
+	}
+	else if(@states[pid,tid]==33)
+	{
+		@states[pid,tid]=34;
 	}
 	else if(@states[pid,tid]==32)
 	{
@@ -396,16 +379,6 @@ tracepoint:syscalls:sys_enter_epoll_pwait2
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_epoll_wait
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_eventfd
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_eventfd2
 {
 	@states[pid,tid]=0;
@@ -441,7 +414,7 @@ tracepoint:syscalls:sys_enter_faccessat2
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_fadvise64
+tracepoint:syscalls:sys_enter_fadvise64_64
 {
 	@states[pid,tid]=0;
 }
@@ -516,11 +489,6 @@ tracepoint:syscalls:sys_enter_flock
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_fork
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_fremovexattr
 {
 	@states[pid,tid]=0;
@@ -566,11 +534,6 @@ tracepoint:syscalls:sys_enter_ftruncate
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_futimesat
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_get_mempolicy
 {
 	@states[pid,tid]=0;
@@ -588,9 +551,9 @@ tracepoint:syscalls:sys_enter_getcpu
 
 tracepoint:syscalls:sys_enter_getcwd
 {
-	if(@states[pid,tid]==84)
+	if(@states[pid,tid]==90)
 	{
-		@states[pid,tid]=85;
+		@states[pid,tid]=91;
 	}
 	else if(@states[pid,tid]==9)
 	{
@@ -602,28 +565,23 @@ tracepoint:syscalls:sys_enter_getcwd
 	}
 }
 
-tracepoint:syscalls:sys_enter_getdents
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_getdents64
 {
-	if(@states[pid,tid]==70)
+	if(@states[pid,tid]==76)
 	{
-		@states[pid,tid]=71;
+		@states[pid,tid]=77;
 	}
-	else if(@states[pid,tid]==69)
+	else if(@states[pid,tid]==75)
 	{
-		@states[pid,tid]=70;
+		@states[pid,tid]=76;
 	}
-	else if(@states[pid,tid]==34)
+	else if(@states[pid,tid]==37)
 	{
-		@states[pid,tid]=35;
+		@states[pid,tid]=38;
 	}
-	else if(@states[pid,tid]==33)
+	else if(@states[pid,tid]==36)
 	{
-		@states[pid,tid]=34;
+		@states[pid,tid]=37;
 	}
 	else
 	{
@@ -662,11 +620,6 @@ tracepoint:syscalls:sys_enter_getpeername
 }
 
 tracepoint:syscalls:sys_enter_getpgid
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_getpgrp
 {
 	@states[pid,tid]=0;
 }
@@ -756,11 +709,6 @@ tracepoint:syscalls:sys_enter_inotify_add_watch
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_inotify_init
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_inotify_init1
 {
 	@states[pid,tid]=0;
@@ -821,16 +769,6 @@ tracepoint:syscalls:sys_enter_ioctl
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_ioperm
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_iopl
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_ioprio_get
 {
 	@states[pid,tid]=0;
@@ -881,17 +819,7 @@ tracepoint:syscalls:sys_enter_landlock_restrict_self
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_lchown
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_lgetxattr
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_link
 {
 	@states[pid,tid]=0;
 }
@@ -946,6 +874,11 @@ tracepoint:syscalls:sys_enter_memfd_create
 	@states[pid,tid]=0;
 }
 
+tracepoint:syscalls:sys_enter_memfd_secret
+{
+	@states[pid,tid]=0;
+}
+
 tracepoint:syscalls:sys_enter_migrate_pages
 {
 	@states[pid,tid]=0;
@@ -956,30 +889,20 @@ tracepoint:syscalls:sys_enter_mincore
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_mkdir
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_mkdirat
 {
-	if(@states[pid,tid]==53)
+	if(@states[pid,tid]==56)
 	{
-		@states[pid,tid]=77;
+		@states[pid,tid]=83;
 	}
 	else if(@states[pid,tid]==17)
 	{
-		@states[pid,tid]=41;
+		@states[pid,tid]=44;
 	}
 	else
 	{
 		@states[pid,tid]=0;
 	}
-}
-
-tracepoint:syscalls:sys_enter_mknod
-{
-	@states[pid,tid]=0;
 }
 
 tracepoint:syscalls:sys_enter_mknodat
@@ -998,11 +921,6 @@ tracepoint:syscalls:sys_enter_mlock2
 }
 
 tracepoint:syscalls:sys_enter_mlockall
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_modify_ldt
 {
 	@states[pid,tid]=0;
 }
@@ -1119,15 +1037,15 @@ tracepoint:syscalls:sys_enter_nanosleep
 
 tracepoint:syscalls:sys_enter_newfstat
 {
-	if(@states[pid,tid]==69)
+	if(@states[pid,tid]==75)
 	{
-		@states[pid,tid]=63;
+		@states[pid,tid]=66;
 	}
-	else if(@states[pid,tid]==62)
+	else if(@states[pid,tid]==65)
 	{
-		@states[pid,tid]=63;
+		@states[pid,tid]=66;
 	}
-	else if(@states[pid,tid]==33)
+	else if(@states[pid,tid]==36)
 	{
 		@states[pid,tid]=27;
 	}
@@ -1143,21 +1061,21 @@ tracepoint:syscalls:sys_enter_newfstat
 
 tracepoint:syscalls:sys_enter_newfstatat
 {
-	if(@states[pid,tid]==83)
+	if(@states[pid,tid]==89)
 	{
-		@states[pid,tid]=84;
+		@states[pid,tid]=90;
 	}
-	else if(@states[pid,tid]==70)
+	else if(@states[pid,tid]==76)
 	{
-		@states[pid,tid]=70;
+		@states[pid,tid]=76;
 	}
-	else if(@states[pid,tid]==47)
+	else if(@states[pid,tid]==50)
 	{
-		@states[pid,tid]=53;
+		@states[pid,tid]=56;
 	}
-	else if(@states[pid,tid]==34)
+	else if(@states[pid,tid]==37)
 	{
-		@states[pid,tid]=34;
+		@states[pid,tid]=37;
 	}
 	else if(@states[pid,tid]==11)
 	{
@@ -1165,7 +1083,7 @@ tracepoint:syscalls:sys_enter_newfstatat
 	}
 	else if(@states[pid,tid]==10)
 	{
-		@states[pid,tid]=47;
+		@states[pid,tid]=50;
 	}
 	else if(@states[pid,tid]==9)
 	{
@@ -1177,7 +1095,7 @@ tracepoint:syscalls:sys_enter_newfstatat
 	}
 	else if(@states[pid,tid]==3)
 	{
-		@states[pid,tid]=83;
+		@states[pid,tid]=89;
 	}
 	else if(@states[pid,tid]==2)
 	{
@@ -1189,22 +1107,7 @@ tracepoint:syscalls:sys_enter_newfstatat
 	}
 }
 
-tracepoint:syscalls:sys_enter_newlstat
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_newstat
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_newuname
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_open
 {
 	@states[pid,tid]=0;
 }
@@ -1221,13 +1124,13 @@ tracepoint:syscalls:sys_enter_open_tree
 
 tracepoint:syscalls:sys_enter_openat
 {
-	if(@states[pid,tid]==56)
+	if(@states[pid,tid]==59)
 	{
-		@states[pid,tid]=61;
+		@states[pid,tid]=64;
 	}
-	else if(@states[pid,tid]==47)
+	else if(@states[pid,tid]==50)
 	{
-		@states[pid,tid]=54;
+		@states[pid,tid]=57;
 	}
 	else if(@states[pid,tid]==20)
 	{
@@ -1248,17 +1151,7 @@ tracepoint:syscalls:sys_enter_openat2
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_pause
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_perf_event_open
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_personality
 {
 	@states[pid,tid]=0;
 }
@@ -1278,37 +1171,12 @@ tracepoint:syscalls:sys_enter_pidfd_send_signal
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_pipe
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_pipe2
 {
 	@states[pid,tid]=0;
 }
 
 tracepoint:syscalls:sys_enter_pivot_root
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_pkey_alloc
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_pkey_free
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_pkey_mprotect
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_poll
 {
 	@states[pid,tid]=0;
 }
@@ -1344,6 +1212,11 @@ tracepoint:syscalls:sys_enter_prlimit64
 }
 
 tracepoint:syscalls:sys_enter_process_madvise
+{
+	@states[pid,tid]=0;
+}
+
+tracepoint:syscalls:sys_enter_process_mrelease
 {
 	@states[pid,tid]=0;
 }
@@ -1388,15 +1261,20 @@ tracepoint:syscalls:sys_enter_quotactl
 	@states[pid,tid]=0;
 }
 
+tracepoint:syscalls:sys_enter_quotactl_fd
+{
+	@states[pid,tid]=0;
+}
+
 tracepoint:syscalls:sys_enter_read
 {
-	if(@states[pid,tid]==64)
+	if(@states[pid,tid]==67)
 	{
-		@states[pid,tid]=65;
+		@states[pid,tid]=68;
 	}
-	else if(@states[pid,tid]==63)
+	else if(@states[pid,tid]==66)
 	{
-		@states[pid,tid]=64;
+		@states[pid,tid]=67;
 	}
 	else if(@states[pid,tid]==28)
 	{
@@ -1421,11 +1299,6 @@ tracepoint:syscalls:sys_enter_read
 }
 
 tracepoint:syscalls:sys_enter_readahead
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_readlink
 {
 	@states[pid,tid]=0;
 }
@@ -1470,11 +1343,6 @@ tracepoint:syscalls:sys_enter_removexattr
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_rename
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_renameat
 {
 	@states[pid,tid]=0;
@@ -1491,11 +1359,6 @@ tracepoint:syscalls:sys_enter_request_key
 }
 
 tracepoint:syscalls:sys_enter_restart_syscall
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_rmdir
 {
 	@states[pid,tid]=0;
 }
@@ -1601,11 +1464,6 @@ tracepoint:syscalls:sys_enter_sched_yield
 }
 
 tracepoint:syscalls:sys_enter_seccomp
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_select
 {
 	@states[pid,tid]=0;
 }
@@ -1795,11 +1653,6 @@ tracepoint:syscalls:sys_enter_sigaltstack
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_signalfd
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_signalfd4
 {
 	@states[pid,tid]=0;
@@ -1840,11 +1693,6 @@ tracepoint:syscalls:sys_enter_swapon
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_symlink
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_symlinkat
 {
 	@states[pid,tid]=0;
@@ -1865,11 +1713,6 @@ tracepoint:syscalls:sys_enter_syncfs
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_sysfs
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_sysinfo
 {
 	@states[pid,tid]=0;
@@ -1886,11 +1729,6 @@ tracepoint:syscalls:sys_enter_tee
 }
 
 tracepoint:syscalls:sys_enter_tgkill
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_time
 {
 	@states[pid,tid]=0;
 }
@@ -1960,20 +1798,15 @@ tracepoint:syscalls:sys_enter_umount
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_unlink
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_unlinkat
 {
-	if(@states[pid,tid]==55)
+	if(@states[pid,tid]==58)
 	{
-		@states[pid,tid]=55;
+		@states[pid,tid]=58;
 	}
-	else if(@states[pid,tid]==47)
+	else if(@states[pid,tid]==50)
 	{
-		@states[pid,tid]=55;
+		@states[pid,tid]=58;
 	}
 	else if(@states[pid,tid]==19)
 	{
@@ -1999,27 +1832,7 @@ tracepoint:syscalls:sys_enter_userfaultfd
 	@states[pid,tid]=0;
 }
 
-tracepoint:syscalls:sys_enter_ustat
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_utime
-{
-	@states[pid,tid]=0;
-}
-
 tracepoint:syscalls:sys_enter_utimensat
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_utimes
-{
-	@states[pid,tid]=0;
-}
-
-tracepoint:syscalls:sys_enter_vfork
 {
 	@states[pid,tid]=0;
 }
@@ -2046,97 +1859,97 @@ tracepoint:syscalls:sys_enter_waitid
 
 tracepoint:syscalls:sys_enter_write
 {
-	if(@states[pid,tid]==90 && (args->fd==3))
+	if(@states[pid,tid]==96 && (args->fd==3))
 	{
-		@states[pid,tid]=91;
+		@states[pid,tid]=97;
 	}
-	else if(@states[pid,tid]==86 && (args->fd==3))
+	else if(@states[pid,tid]==92 && (args->fd==3))
 	{
-		@states[pid,tid]=87;
+		@states[pid,tid]=93;
 	}
-	else if(@states[pid,tid]==85 && (args->fd==3))
+	else if(@states[pid,tid]==91 && (args->fd==3))
 	{
-		@states[pid,tid]=90;
+		@states[pid,tid]=96;
+	}
+	else if(@states[pid,tid]==90 && (args->fd==3))
+	{
+		@states[pid,tid]=92;
 	}
 	else if(@states[pid,tid]==84 && (args->fd==3))
 	{
-		@states[pid,tid]=86;
+		@states[pid,tid]=85;
+	}
+	else if(@states[pid,tid]==83 && (args->fd==3))
+	{
+		@states[pid,tid]=84;
+	}
+	else if(@states[pid,tid]==79 && (args->fd==3))
+	{
+		@states[pid,tid]=80;
 	}
 	else if(@states[pid,tid]==78 && (args->fd==3))
 	{
 		@states[pid,tid]=79;
 	}
-	else if(@states[pid,tid]==77 && (args->fd==3))
+	else if(@states[pid,tid]==72)
 	{
-		@states[pid,tid]=78;
+		@states[pid,tid]=72;
 	}
-	else if(@states[pid,tid]==73 && (args->fd==3))
+	else if(@states[pid,tid]==70)
 	{
-		@states[pid,tid]=74;
+		@states[pid,tid]=72;
 	}
-	else if(@states[pid,tid]==72 && (args->fd==3))
+	else if(@states[pid,tid]==69)
 	{
-		@states[pid,tid]=73;
+		@states[pid,tid]=69;
 	}
-	else if(@states[pid,tid]==68)
+	else if(@states[pid,tid]==60 && (args->fd==3))
 	{
-		@states[pid,tid]=66;
+		@states[pid,tid]=61;
 	}
-	else if(@states[pid,tid]==67)
+	else if(@states[pid,tid]==59)
 	{
-		@states[pid,tid]=66;
+		@states[pid,tid]=59;
 	}
-	else if(@states[pid,tid]==66)
+	else if(@states[pid,tid]==58 && (args->fd==3))
 	{
-		@states[pid,tid]=66;
+		@states[pid,tid]=60;
 	}
-	else if(@states[pid,tid]==57 && (args->fd==3))
+	else if(@states[pid,tid]==51 && (args->fd==3))
 	{
-		@states[pid,tid]=58;
+		@states[pid,tid]=52;
 	}
-	else if(@states[pid,tid]==56)
+	else if(@states[pid,tid]==50 && (args->fd==3))
 	{
-		@states[pid,tid]=56;
+		@states[pid,tid]=60;
 	}
-	else if(@states[pid,tid]==55 && (args->fd==3))
+	else if(@states[pid,tid]==50)
 	{
-		@states[pid,tid]=57;
+		@states[pid,tid]=59;
 	}
-	else if(@states[pid,tid]==48 && (args->fd==3))
+	else if(@states[pid,tid]==45 && (args->fd==3))
 	{
-		@states[pid,tid]=49;
+		@states[pid,tid]=46;
 	}
-	else if(@states[pid,tid]==47 && (args->fd==3))
+	else if(@states[pid,tid]==44 && (args->fd==3))
 	{
-		@states[pid,tid]=57;
+		@states[pid,tid]=45;
 	}
-	else if(@states[pid,tid]==47)
+	else if(@states[pid,tid]==40 && (args->fd==3))
 	{
-		@states[pid,tid]=56;
+		@states[pid,tid]=41;
 	}
-	else if(@states[pid,tid]==42 && (args->fd==3))
+	else if(@states[pid,tid]==39 && (args->fd==3))
 	{
-		@states[pid,tid]=43;
+		@states[pid,tid]=40;
 	}
-	else if(@states[pid,tid]==41 && (args->fd==3))
+	else if(@states[pid,tid]==33)
 	{
-		@states[pid,tid]=42;
-	}
-	else if(@states[pid,tid]==37 && (args->fd==3))
-	{
-		@states[pid,tid]=38;
-	}
-	else if(@states[pid,tid]==36 && (args->fd==3))
-	{
-		@states[pid,tid]=37;
-	}
-	else if(@states[pid,tid]==32)
-	{
-		@states[pid,tid]=30;
+		@states[pid,tid]=33;
 	}
 	else if(@states[pid,tid]==31)
 	{
-		@states[pid,tid]=30;
+		@states[pid,tid]=33;
 	}
 	else if(@states[pid,tid]==30)
 	{
@@ -2164,7 +1977,7 @@ tracepoint:syscalls:sys_enter_write
 	}
 	else if(@states[pid,tid]==10 && (args->fd==3))
 	{
-		@states[pid,tid]=48;
+		@states[pid,tid]=51;
 	}
 	else if(@states[pid,tid]==9 && (args->fd==3))
 	{
@@ -2192,47 +2005,6 @@ tracepoint:syscalls:sys_enter_writev
 {
 	@states[pid,tid]=0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

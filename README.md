@@ -6,7 +6,7 @@
 
 ## 原理
 
-* 本项目可以看作是一个简单的编译器，它会根据给定的dss语言，将每一个系统调用序列都转换成一个NFA，然后将所有的NFA合并成一个大的NFA，然后再将其转换成DFA，最后将这个DFA翻译成bpftrace的bt文件，最后就可以使用bpftrace运行该bt文件，实现若干系统调用序列的检测
+* 本项目可以看作是一个简单的编译器，它会根据给定的dss语言，将每一个系统调用序列都转换成一个NFA，然后将所有的NFA合并成一个大的NFA，然后再将其转换成DFA，最后将这个DFA翻译成bt文件或者.c和.bpf.c文件
 
 ## 语法
 
@@ -114,7 +114,13 @@
 * 只需要拷贝源代码，然后进入项目文件夹之后，输入`make`进行编译，会得到一个`dss`可执行文件，按照如下方式执行即可：
 
   ```she
-  ./dss example.txt test.bt
+  ./dss example.txt --bpftrace test.bt
+  ```
+  或者
+  ```she
+  ./dss example.txt --libbpf test.bt
   ```
 
-  其中`example.txt`是要dss语言的源文件名，`test.bt`是最终要生成的bt文件名
+  * `example.txt`是要dss语言的源文件名，`test.bt`是最终要生成的bt文件名
+  * `--bpftrace`表示最终输出为.bt文件
+  * `--libbpf`表示最终输出为.c和.bpf.c文件

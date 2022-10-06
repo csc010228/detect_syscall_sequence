@@ -101,7 +101,7 @@ sys_enter_newfstatat->sys_enter_newfstatat->sys_enter_getcwd+->sys_enter_newfsta
 sys_enter_epoll_ctl->
 sys_enter_newfstat->
 sys_enter_read->sys_enter_read->
-sys_enter_close->sys_enter_epoll_pwait*)+->
+sys_enter_close->sys_enter_epoll_pwait+)+->
 sys_enter_write*->
 sys_enter_epoll_pwait->sys_enter_epoll_pwait;
 
