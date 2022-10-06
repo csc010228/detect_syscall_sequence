@@ -22,4 +22,7 @@ void trim(string & str);
 //字符替换
 string replace_char(string str, char source, char target);
 
+//获取字符串某一个字符后面的子字符串
+string get_string_after_char(string str, char ch);
+
 #endif //__UTIL_H

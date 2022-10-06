@@ -24,7 +24,10 @@ int handle_sys_enter_accept(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -35,7 +38,10 @@ int handle_sys_enter_accept4(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	if (*current_status_p == 3) {
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else if (*current_status_p == 3) {
 		next_status = 4;
 	}
 	else if (*current_status_p == 0) {
@@ -52,7 +58,10 @@ int handle_sys_enter_acct(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -63,7 +72,10 @@ int handle_sys_enter_add_key(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -74,7 +86,10 @@ int handle_sys_enter_adjtimex(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -85,7 +100,10 @@ int handle_sys_enter_arm64_personality(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -96,7 +114,10 @@ int handle_sys_enter_bind(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -107,7 +128,10 @@ int handle_sys_enter_bpf(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -118,7 +142,10 @@ int handle_sys_enter_brk(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -129,7 +156,10 @@ int handle_sys_enter_capget(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -140,7 +170,10 @@ int handle_sys_enter_capset(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -151,7 +184,10 @@ int handle_sys_enter_chdir(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -162,7 +198,10 @@ int handle_sys_enter_chroot(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -173,7 +212,10 @@ int handle_sys_enter_clock_adjtime(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -184,7 +226,10 @@ int handle_sys_enter_clock_getres(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -195,7 +240,10 @@ int handle_sys_enter_clock_gettime(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -206,7 +254,10 @@ int handle_sys_enter_clock_nanosleep(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -217,7 +268,10 @@ int handle_sys_enter_clock_settime(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -228,7 +282,10 @@ int handle_sys_enter_clone(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -239,7 +296,10 @@ int handle_sys_enter_clone3(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -250,7 +310,10 @@ int handle_sys_enter_close(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -261,7 +324,10 @@ int handle_sys_enter_close_range(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -272,7 +338,10 @@ int handle_sys_enter_connect(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -283,7 +352,10 @@ int handle_sys_enter_copy_file_range(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -294,7 +366,10 @@ int handle_sys_enter_delete_module(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -305,7 +380,10 @@ int handle_sys_enter_dup(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -316,7 +394,10 @@ int handle_sys_enter_dup3(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -327,7 +408,10 @@ int handle_sys_enter_epoll_create1(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -338,7 +422,10 @@ int handle_sys_enter_epoll_ctl(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	if (*current_status_p == 1) {
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else if (*current_status_p == 1) {
 		next_status = 2;
 	}
 	else next_status = 0;
@@ -352,7 +439,10 @@ int handle_sys_enter_epoll_pwait2(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -363,7 +453,10 @@ int handle_sys_enter_eventfd2(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -374,7 +467,10 @@ int handle_sys_enter_execve(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -385,7 +481,10 @@ int handle_sys_enter_execveat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -396,7 +495,10 @@ int handle_sys_enter_exit(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -407,7 +509,10 @@ int handle_sys_enter_exit_group(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -418,7 +523,10 @@ int handle_sys_enter_faccessat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -429,7 +537,10 @@ int handle_sys_enter_faccessat2(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -440,7 +551,10 @@ int handle_sys_enter_fadvise64_64(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -451,7 +565,10 @@ int handle_sys_enter_fallocate(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -462,7 +579,10 @@ int handle_sys_enter_fanotify_init(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -473,7 +593,10 @@ int handle_sys_enter_fanotify_mark(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -484,7 +607,10 @@ int handle_sys_enter_fchdir(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -495,7 +621,10 @@ int handle_sys_enter_fchmod(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -506,7 +635,10 @@ int handle_sys_enter_fchmodat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -517,7 +649,10 @@ int handle_sys_enter_fchown(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -528,7 +663,10 @@ int handle_sys_enter_fchownat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -539,7 +677,10 @@ int handle_sys_enter_fcntl(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -550,7 +691,10 @@ int handle_sys_enter_fdatasync(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -561,7 +705,10 @@ int handle_sys_enter_fgetxattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -572,7 +719,10 @@ int handle_sys_enter_finit_module(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -583,7 +733,10 @@ int handle_sys_enter_flistxattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -594,7 +747,10 @@ int handle_sys_enter_flock(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -605,7 +761,10 @@ int handle_sys_enter_fremovexattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -616,7 +775,10 @@ int handle_sys_enter_fsconfig(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -627,7 +789,10 @@ int handle_sys_enter_fsetxattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -638,7 +803,10 @@ int handle_sys_enter_fsmount(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -649,7 +817,10 @@ int handle_sys_enter_fsopen(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -660,7 +831,10 @@ int handle_sys_enter_fspick(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -671,7 +845,10 @@ int handle_sys_enter_fstatfs(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -682,7 +859,10 @@ int handle_sys_enter_fsync(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -693,7 +873,10 @@ int handle_sys_enter_ftruncate(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -704,7 +887,10 @@ int handle_sys_enter_get_mempolicy(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -715,7 +901,10 @@ int handle_sys_enter_get_robust_list(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -726,7 +915,10 @@ int handle_sys_enter_getcpu(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -737,7 +929,10 @@ int handle_sys_enter_getcwd(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -748,7 +943,10 @@ int handle_sys_enter_getdents64(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -759,7 +957,10 @@ int handle_sys_enter_getegid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -770,7 +971,10 @@ int handle_sys_enter_geteuid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -781,7 +985,10 @@ int handle_sys_enter_getgid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -792,7 +999,10 @@ int handle_sys_enter_getgroups(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -803,7 +1013,10 @@ int handle_sys_enter_getitimer(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -814,7 +1027,10 @@ int handle_sys_enter_getpeername(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -825,7 +1041,10 @@ int handle_sys_enter_getpgid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -836,7 +1055,10 @@ int handle_sys_enter_getpid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -847,7 +1069,10 @@ int handle_sys_enter_getppid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -858,7 +1083,10 @@ int handle_sys_enter_getpriority(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -869,7 +1097,10 @@ int handle_sys_enter_getrandom(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -880,7 +1111,10 @@ int handle_sys_enter_getresgid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -891,7 +1125,10 @@ int handle_sys_enter_getresuid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -902,7 +1139,10 @@ int handle_sys_enter_getrlimit(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -913,7 +1153,10 @@ int handle_sys_enter_getrusage(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -924,7 +1167,10 @@ int handle_sys_enter_getsid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -935,7 +1181,10 @@ int handle_sys_enter_getsockname(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	if (*current_status_p == 2) {
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else if (*current_status_p == 2) {
 		next_status = 3;
 	}
 	else next_status = 0;
@@ -949,7 +1198,10 @@ int handle_sys_enter_getsockopt(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -960,7 +1212,10 @@ int handle_sys_enter_gettid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -971,7 +1226,10 @@ int handle_sys_enter_gettimeofday(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -982,7 +1240,10 @@ int handle_sys_enter_getuid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -993,7 +1254,10 @@ int handle_sys_enter_getxattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1004,7 +1268,10 @@ int handle_sys_enter_init_module(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1015,7 +1282,10 @@ int handle_sys_enter_inotify_add_watch(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1026,7 +1296,10 @@ int handle_sys_enter_inotify_init1(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1037,7 +1310,10 @@ int handle_sys_enter_inotify_rm_watch(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1048,7 +1324,10 @@ int handle_sys_enter_io_cancel(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1059,7 +1338,10 @@ int handle_sys_enter_io_destroy(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1070,7 +1352,10 @@ int handle_sys_enter_io_getevents(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1081,7 +1366,10 @@ int handle_sys_enter_io_pgetevents(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1092,7 +1380,10 @@ int handle_sys_enter_io_setup(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1103,7 +1394,10 @@ int handle_sys_enter_io_submit(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1114,7 +1408,10 @@ int handle_sys_enter_io_uring_enter(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1125,7 +1422,10 @@ int handle_sys_enter_io_uring_register(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1136,7 +1436,10 @@ int handle_sys_enter_io_uring_setup(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1147,7 +1450,10 @@ int handle_sys_enter_ioctl(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1158,7 +1464,10 @@ int handle_sys_enter_ioprio_get(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1169,7 +1478,10 @@ int handle_sys_enter_ioprio_set(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1180,7 +1492,10 @@ int handle_sys_enter_kcmp(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1191,7 +1506,10 @@ int handle_sys_enter_kexec_file_load(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1202,7 +1520,10 @@ int handle_sys_enter_kexec_load(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1213,7 +1534,10 @@ int handle_sys_enter_keyctl(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1224,7 +1548,10 @@ int handle_sys_enter_kill(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1235,7 +1562,10 @@ int handle_sys_enter_landlock_add_rule(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1246,7 +1576,10 @@ int handle_sys_enter_landlock_create_ruleset(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1257,7 +1590,10 @@ int handle_sys_enter_landlock_restrict_self(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1268,7 +1604,10 @@ int handle_sys_enter_lgetxattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1279,7 +1618,10 @@ int handle_sys_enter_linkat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1290,7 +1632,10 @@ int handle_sys_enter_listen(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1301,7 +1646,10 @@ int handle_sys_enter_listxattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1312,7 +1660,10 @@ int handle_sys_enter_llistxattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1323,7 +1674,10 @@ int handle_sys_enter_lremovexattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1334,7 +1688,10 @@ int handle_sys_enter_lseek(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1345,7 +1702,10 @@ int handle_sys_enter_lsetxattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1356,7 +1716,10 @@ int handle_sys_enter_madvise(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1367,7 +1730,10 @@ int handle_sys_enter_mbind(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1378,7 +1744,10 @@ int handle_sys_enter_membarrier(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1389,7 +1758,10 @@ int handle_sys_enter_memfd_create(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1400,7 +1772,10 @@ int handle_sys_enter_memfd_secret(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1411,7 +1786,10 @@ int handle_sys_enter_migrate_pages(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1422,7 +1800,10 @@ int handle_sys_enter_mincore(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1433,7 +1814,10 @@ int handle_sys_enter_mkdirat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1444,7 +1828,10 @@ int handle_sys_enter_mknodat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1455,7 +1842,10 @@ int handle_sys_enter_mlock(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1466,7 +1856,10 @@ int handle_sys_enter_mlock2(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1477,7 +1870,10 @@ int handle_sys_enter_mlockall(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1488,7 +1884,10 @@ int handle_sys_enter_mmap(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1499,7 +1898,10 @@ int handle_sys_enter_mount(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1510,7 +1912,10 @@ int handle_sys_enter_mount_setattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1521,7 +1926,10 @@ int handle_sys_enter_move_mount(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1532,7 +1940,10 @@ int handle_sys_enter_move_pages(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1543,7 +1954,10 @@ int handle_sys_enter_mprotect(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1554,7 +1968,10 @@ int handle_sys_enter_mq_getsetattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1565,7 +1982,10 @@ int handle_sys_enter_mq_notify(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1576,7 +1996,10 @@ int handle_sys_enter_mq_open(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1587,7 +2010,10 @@ int handle_sys_enter_mq_timedreceive(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1598,7 +2024,10 @@ int handle_sys_enter_mq_timedsend(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1609,7 +2038,10 @@ int handle_sys_enter_mq_unlink(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1620,7 +2052,10 @@ int handle_sys_enter_mremap(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1631,7 +2066,10 @@ int handle_sys_enter_msgctl(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1642,7 +2080,10 @@ int handle_sys_enter_msgget(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1653,7 +2094,10 @@ int handle_sys_enter_msgrcv(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1664,7 +2108,10 @@ int handle_sys_enter_msgsnd(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1675,7 +2122,10 @@ int handle_sys_enter_msync(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1686,7 +2136,10 @@ int handle_sys_enter_munlock(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1697,7 +2150,10 @@ int handle_sys_enter_munlockall(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1708,7 +2164,10 @@ int handle_sys_enter_munmap(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1719,7 +2178,10 @@ int handle_sys_enter_name_to_handle_at(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1730,7 +2192,10 @@ int handle_sys_enter_newfstat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1741,7 +2206,10 @@ int handle_sys_enter_newfstatat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1752,7 +2220,10 @@ int handle_sys_enter_newuname(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1763,7 +2234,10 @@ int handle_sys_enter_open_by_handle_at(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1774,7 +2248,10 @@ int handle_sys_enter_open_tree(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1785,8 +2262,7 @@ int handle_sys_enter_openat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	if (*current_status_p == 11) {
-		size_t *finish_tag;/* reserve sample from BPF ringbuf */finish_tag = bpf_ringbuf_reserve(&rb, sizeof(*finish_tag), 0);if (!finish_tag)return 0;my_pid = pid;bpf_ringbuf_submit(finish_tag, 0);
+	if (!current_status_p) {
 		next_status = 0;
 	}
 	else next_status = 0;
@@ -1800,7 +2276,10 @@ int handle_sys_enter_openat2(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1811,7 +2290,10 @@ int handle_sys_enter_perf_event_open(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1822,7 +2304,10 @@ int handle_sys_enter_pidfd_getfd(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1833,7 +2318,10 @@ int handle_sys_enter_pidfd_open(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1844,7 +2332,10 @@ int handle_sys_enter_pidfd_send_signal(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1855,7 +2346,10 @@ int handle_sys_enter_pipe2(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1866,7 +2360,10 @@ int handle_sys_enter_pivot_root(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1877,7 +2374,10 @@ int handle_sys_enter_ppoll(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1888,7 +2388,10 @@ int handle_sys_enter_prctl(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1899,7 +2402,10 @@ int handle_sys_enter_pread64(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1910,7 +2416,10 @@ int handle_sys_enter_preadv(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1921,7 +2430,10 @@ int handle_sys_enter_preadv2(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1932,7 +2444,10 @@ int handle_sys_enter_prlimit64(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1943,7 +2458,10 @@ int handle_sys_enter_process_madvise(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1954,7 +2472,10 @@ int handle_sys_enter_process_mrelease(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1965,7 +2486,10 @@ int handle_sys_enter_process_vm_readv(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1976,7 +2500,10 @@ int handle_sys_enter_process_vm_writev(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1987,7 +2514,10 @@ int handle_sys_enter_pselect6(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -1998,7 +2528,10 @@ int handle_sys_enter_ptrace(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2009,7 +2542,10 @@ int handle_sys_enter_pwrite64(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2020,7 +2556,10 @@ int handle_sys_enter_pwritev(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2031,7 +2570,10 @@ int handle_sys_enter_pwritev2(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2042,7 +2584,10 @@ int handle_sys_enter_quotactl(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2053,7 +2598,10 @@ int handle_sys_enter_quotactl_fd(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2064,20 +2612,12 @@ int handle_sys_enter_read(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	if (*current_status_p == 10) {
-		next_status = 11;
-	}
-	else if (*current_status_p == 9) {
-		next_status = 10;
-	}
-	else if (*current_status_p == 7) {
-		next_status = 8;
-	}
-	else if (*current_status_p == 5) {
-		next_status = 6;
+	if (!current_status_p) {
+		next_status = 0;
 	}
 	else if (*current_status_p == 4) {
-		next_status = 5;
+		bpf_printk("docker run libbpf\n");
+		next_status = 0;
 	}
 	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
@@ -2090,7 +2630,10 @@ int handle_sys_enter_readahead(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2101,7 +2644,10 @@ int handle_sys_enter_readlinkat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2112,7 +2658,10 @@ int handle_sys_enter_readv(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2123,7 +2672,10 @@ int handle_sys_enter_reboot(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2134,7 +2686,10 @@ int handle_sys_enter_recvfrom(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2145,7 +2700,10 @@ int handle_sys_enter_recvmmsg(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2156,7 +2714,10 @@ int handle_sys_enter_recvmsg(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2167,7 +2728,10 @@ int handle_sys_enter_remap_file_pages(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2178,7 +2742,10 @@ int handle_sys_enter_removexattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2189,7 +2756,10 @@ int handle_sys_enter_renameat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2200,7 +2770,10 @@ int handle_sys_enter_renameat2(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2211,7 +2784,10 @@ int handle_sys_enter_request_key(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2222,7 +2798,10 @@ int handle_sys_enter_restart_syscall(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2233,7 +2812,10 @@ int handle_sys_enter_rseq(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2244,7 +2826,10 @@ int handle_sys_enter_rt_sigaction(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2255,7 +2840,10 @@ int handle_sys_enter_rt_sigpending(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2266,7 +2854,10 @@ int handle_sys_enter_rt_sigprocmask(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2277,7 +2868,10 @@ int handle_sys_enter_rt_sigqueueinfo(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2288,7 +2882,10 @@ int handle_sys_enter_rt_sigreturn(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2299,7 +2896,10 @@ int handle_sys_enter_rt_sigsuspend(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2310,7 +2910,10 @@ int handle_sys_enter_rt_sigtimedwait(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2321,7 +2924,10 @@ int handle_sys_enter_rt_tgsigqueueinfo(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2332,7 +2938,10 @@ int handle_sys_enter_sched_get_priority_max(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2343,7 +2952,10 @@ int handle_sys_enter_sched_get_priority_min(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2354,7 +2966,10 @@ int handle_sys_enter_sched_getaffinity(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2365,7 +2980,10 @@ int handle_sys_enter_sched_getattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2376,7 +2994,10 @@ int handle_sys_enter_sched_getparam(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2387,7 +3008,10 @@ int handle_sys_enter_sched_getscheduler(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2398,7 +3022,10 @@ int handle_sys_enter_sched_rr_get_interval(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2409,7 +3036,10 @@ int handle_sys_enter_sched_setaffinity(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2420,7 +3050,10 @@ int handle_sys_enter_sched_setattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2431,7 +3064,10 @@ int handle_sys_enter_sched_setparam(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2442,7 +3078,10 @@ int handle_sys_enter_sched_setscheduler(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2453,7 +3092,10 @@ int handle_sys_enter_sched_yield(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2464,7 +3106,10 @@ int handle_sys_enter_seccomp(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2475,7 +3120,10 @@ int handle_sys_enter_semctl(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2486,7 +3134,10 @@ int handle_sys_enter_semget(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2497,7 +3148,10 @@ int handle_sys_enter_semop(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2508,7 +3162,10 @@ int handle_sys_enter_semtimedop(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2519,7 +3176,10 @@ int handle_sys_enter_sendfile64(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2530,7 +3190,10 @@ int handle_sys_enter_sendmmsg(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2541,7 +3204,10 @@ int handle_sys_enter_sendmsg(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2552,7 +3218,10 @@ int handle_sys_enter_sendto(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2563,7 +3232,10 @@ int handle_sys_enter_set_mempolicy(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2574,7 +3246,10 @@ int handle_sys_enter_set_robust_list(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2585,7 +3260,10 @@ int handle_sys_enter_set_tid_address(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2596,7 +3274,10 @@ int handle_sys_enter_setdomainname(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2607,7 +3288,10 @@ int handle_sys_enter_setfsgid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2618,7 +3302,10 @@ int handle_sys_enter_setfsuid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2629,7 +3316,10 @@ int handle_sys_enter_setgid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2640,7 +3330,10 @@ int handle_sys_enter_setgroups(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2651,7 +3344,10 @@ int handle_sys_enter_sethostname(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2662,7 +3358,10 @@ int handle_sys_enter_setitimer(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2673,7 +3372,10 @@ int handle_sys_enter_setns(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2684,7 +3386,10 @@ int handle_sys_enter_setpgid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2695,7 +3400,10 @@ int handle_sys_enter_setpriority(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2706,7 +3414,10 @@ int handle_sys_enter_setregid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2717,7 +3428,10 @@ int handle_sys_enter_setresgid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2728,7 +3442,10 @@ int handle_sys_enter_setresuid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2739,7 +3456,10 @@ int handle_sys_enter_setreuid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2750,7 +3470,10 @@ int handle_sys_enter_setrlimit(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2761,7 +3484,10 @@ int handle_sys_enter_setsid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2772,7 +3498,10 @@ int handle_sys_enter_setsockopt(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2783,7 +3512,10 @@ int handle_sys_enter_settimeofday(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2794,7 +3526,10 @@ int handle_sys_enter_setuid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2805,7 +3540,10 @@ int handle_sys_enter_setxattr(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2816,7 +3554,10 @@ int handle_sys_enter_shmat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2827,7 +3568,10 @@ int handle_sys_enter_shmctl(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2838,7 +3582,10 @@ int handle_sys_enter_shmdt(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2849,7 +3596,10 @@ int handle_sys_enter_shmget(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2860,7 +3610,10 @@ int handle_sys_enter_shutdown(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2871,7 +3624,10 @@ int handle_sys_enter_sigaltstack(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2882,7 +3638,10 @@ int handle_sys_enter_signalfd4(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2893,7 +3652,10 @@ int handle_sys_enter_socket(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2904,7 +3666,10 @@ int handle_sys_enter_socketpair(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2915,7 +3680,10 @@ int handle_sys_enter_splice(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2926,7 +3694,10 @@ int handle_sys_enter_statfs(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2937,7 +3708,10 @@ int handle_sys_enter_statx(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2948,7 +3722,10 @@ int handle_sys_enter_swapoff(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2959,7 +3736,10 @@ int handle_sys_enter_swapon(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2970,7 +3750,10 @@ int handle_sys_enter_symlinkat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2981,7 +3764,10 @@ int handle_sys_enter_sync(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -2992,7 +3778,10 @@ int handle_sys_enter_sync_file_range(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3003,7 +3792,10 @@ int handle_sys_enter_syncfs(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3014,7 +3806,10 @@ int handle_sys_enter_sysinfo(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3025,7 +3820,10 @@ int handle_sys_enter_syslog(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3036,7 +3834,10 @@ int handle_sys_enter_tee(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3047,7 +3848,10 @@ int handle_sys_enter_tgkill(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3058,7 +3862,10 @@ int handle_sys_enter_timer_create(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3069,7 +3876,10 @@ int handle_sys_enter_timer_delete(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3080,7 +3890,10 @@ int handle_sys_enter_timer_getoverrun(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3091,7 +3904,10 @@ int handle_sys_enter_timer_gettime(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3102,7 +3918,10 @@ int handle_sys_enter_timer_settime(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3113,7 +3932,10 @@ int handle_sys_enter_timerfd_create(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3124,7 +3946,10 @@ int handle_sys_enter_timerfd_gettime(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3135,7 +3960,10 @@ int handle_sys_enter_timerfd_settime(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3146,7 +3974,10 @@ int handle_sys_enter_times(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3157,7 +3988,10 @@ int handle_sys_enter_tkill(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3168,7 +4002,10 @@ int handle_sys_enter_truncate(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3179,7 +4016,10 @@ int handle_sys_enter_umask(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3190,7 +4030,10 @@ int handle_sys_enter_umount(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3201,7 +4044,10 @@ int handle_sys_enter_unlinkat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3212,7 +4058,10 @@ int handle_sys_enter_unshare(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3223,7 +4072,10 @@ int handle_sys_enter_userfaultfd(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3234,7 +4086,10 @@ int handle_sys_enter_utimensat(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3245,7 +4100,10 @@ int handle_sys_enter_vhangup(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3256,7 +4114,10 @@ int handle_sys_enter_vmsplice(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3267,7 +4128,10 @@ int handle_sys_enter_wait4(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3278,7 +4142,10 @@ int handle_sys_enter_waitid(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }
@@ -3289,11 +4156,8 @@ int handle_sys_enter_write(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	if (*current_status_p == 8) {
-		next_status = 9;
-	}
-	else if (*current_status_p == 6) {
-		next_status = 7;
+	if (!current_status_p) {
+		next_status = 0;
 	}
 	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
@@ -3306,7 +4170,10 @@ int handle_sys_enter_writev(void *ctx)
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
 	size_t next_status;
-	next_status = 0;
+	if (!current_status_p) {
+		next_status = 0;
+	}
+	else next_status = 0;
 	bpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);
 	return 0;
 }

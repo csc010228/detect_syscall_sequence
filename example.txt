@@ -1,110 +1,13 @@
-#includes
-    <asm/signal.h>
-#end
 
-#atom thread
+#atom process
 
-#ignore sys_rt_sigreturn,sys_futex,sys_madvise,sys_mmap
-
-#BEGIN_probe
-    printf("Tracing sliver implant... Hit Ctrl-C to end.\n");
-	printf("%-9s %-20s %-10s %-10s %-20s\n", "TIME", "IMPLANT", "PID", "TID", "COMMAND");
-#end
-
-#END_probe
-    printf("Tracing sliver implant end.\n");
-#end
-
-#tracepoint:syscalls:sys_enter_read read
-    #cond args->fd==3 && args->count==1676
-#end
-
-#tracepoint:syscalls:sys_enter_write write
-    #cond args->fd==3
-#end
-
-#tracepoint:syscalls:sys_enter_epoll_pwait epoll_pwait
-    #cond args->epfd==4 && args->maxevents==128
-#end
+#ignore sys_nanosleep,sys_futex,sys_epoll_pwait
 
 
 #sequence
-    read->read->
-    sys_enter_newfstatat->sys_enter_newfstatat->sys_enter_getcwd+->sys_enter_newfstatat->
-    sys_enter_openat->sys_enter_epoll_ctl->sys_enter_getdents64->
-    (sys_enter_newfstatat)*->
-    sys_enter_getdents64->sys_enter_close->
-    write->write->
-    epoll_pwait->epoll_pwait;
+    sys_enter_accept4->sys_enter_epoll_ctl->
+    sys_enter_getsockname->sys_enter_accept4->
+    sys_enter_read;
 #do
-    time("%H:%M:%S  ");
-    printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"ls");
-#end
-
-#sequence
-    read->read->
-    write->write->
-    epoll_pwait->epoll_pwait;
-#do
-    time("%H:%M:%S  ");
-    printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"ping");
-#end
-
-#sequence
-    read->read->
-    sys_enter_newfstatat->sys_enter_newfstatat->
-    sys_enter_getcwd+->
-    write->write->
-    epoll_pwait->epoll_pwait;
-#do
-    time("%H:%M:%S  ");
-    printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"pwd");
-#end
-
-#sequence
-    read->read->
-    sys_enter_chdir->
-    sys_enter_newfstatat->sys_enter_newfstatat->sys_enter_getcwd+->
-    write->write->
-    epoll_pwait->epoll_pwait;
-#do
-    time("%H:%M:%S  ");
-    printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cd");
-#end
-
-#sequence
-    read->read->
-    sys_enter_newfstatat->sys_enter_newfstatat->sys_enter_getcwd+->sys_enter_newfstatat->sys_enter_newfstatat->
-    sys_enter_mkdirat->
-    write->write->
-    epoll_pwait->epoll_pwait;
-#do
-    time("%H:%M:%S  ");
-    printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"mkdir");
-#end
-
-#sequence
-    read->read->
-    sys_enter_newfstatat->sys_enter_newfstatat->sys_enter_getcwd+->sys_enter_newfstatat->
-    sys_enter_unlinkat*->
-    write->write->
-    epoll_pwait->epoll_pwait;
-#do
-    time("%H:%M:%S  ");
-    printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"rm");
-#end
-
-#sequence
-    read->read->
-    sys_enter_newfstatat->sys_enter_newfstatat->sys_enter_getcwd+->sys_enter_newfstatat->
-    (sys_enter_openat->
-    sys_enter_epoll_ctl->
-    sys_enter_newfstat->
-    sys_enter_read->sys_enter_read->
-    sys_enter_close->sys_enter_epoll_pwait+)+->
-    sys_enter_write*->
-    sys_enter_epoll_pwait->sys_enter_epoll_pwait;
-#do
-    time("%H:%M:%S  ");
-    printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+    bpf_printk("docker run libbpf\n");
 #end

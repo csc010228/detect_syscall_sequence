@@ -30,3 +30,17 @@ string replace_char(string str, char source, char target) {
     }
     return res;
 }
+
+string get_string_after_char(string str, char ch) {
+    string res = "";
+    // for (size_t index = str.size();index != 0;index --) {
+    //     if (str[index] == ch) break;
+    //     res += str[index];
+    // }
+    for (string::reverse_iterator c = str.rbegin();c != str.rend();c ++) {
+        if (*c == ch) break;
+        //res.push_back(*c);
+        res = *c + res;
+    }
+    return res;
+}

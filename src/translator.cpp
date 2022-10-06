@@ -371,6 +371,10 @@ bool Translator::output_bpftrace_file(string output_filename, enum output_file_t
         out << "\t__type(value, size_t);" <<endl;
         out << "\t__uint(max_entries, 1024 * 16);" <<endl;
         out << "} status SEC(\".maps\");\n" <<endl;
+        out << "struct {" <<endl;
+        out << "\t__uint(type, BPF_MAP_TYPE_RINGBUF);" <<endl;
+        out << "\t__uint(max_entries, 256 * 1024);" <<endl;
+        out << "} rb SEC(\".maps\");\n" <<endl;
         break;
     default:
         break;

@@ -1,0 +1,1813 @@
+tracepoint:syscalls:sys_enter_accept
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_accept4
+{
+	if(@states[pid]==3)
+	{
+		@states[pid]=4;
+	}
+	else if(@states[pid]==0)
+	{
+		@states[pid]=1;
+	}
+	else
+	{
+		@states[pid]=0;
+	}
+}
+
+tracepoint:syscalls:sys_enter_acct
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_add_key
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_adjtimex
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_arm64_personality
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_bind
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_bpf
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_brk
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_capget
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_capset
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_chdir
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_chroot
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_clock_adjtime
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_clock_getres
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_clock_gettime
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_clock_nanosleep
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_clock_settime
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_clone
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_clone3
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_close
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_close_range
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_connect
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_copy_file_range
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_delete_module
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_dup
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_dup3
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_epoll_create1
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_epoll_ctl
+{
+	if(@states[pid]==1)
+	{
+		@states[pid]=2;
+	}
+	else
+	{
+		@states[pid]=0;
+	}
+}
+
+tracepoint:syscalls:sys_enter_epoll_pwait2
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_eventfd2
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_execve
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_execveat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_exit
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_exit_group
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_faccessat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_faccessat2
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fadvise64_64
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fallocate
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fanotify_init
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fanotify_mark
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fchdir
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fchmod
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fchmodat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fchown
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fchownat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fcntl
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fdatasync
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fgetxattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_finit_module
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_flistxattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_flock
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fremovexattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fsconfig
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fsetxattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fsmount
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fsopen
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fspick
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fstatfs
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_fsync
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_ftruncate
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_get_mempolicy
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_get_robust_list
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getcpu
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getcwd
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getdents64
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getegid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_geteuid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getgid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getgroups
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getitimer
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getpeername
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getpgid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getpid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getppid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getpriority
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getrandom
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getresgid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getresuid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getrlimit
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getrusage
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getsid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getsockname
+{
+	if(@states[pid]==2)
+	{
+		@states[pid]=3;
+	}
+	else
+	{
+		@states[pid]=0;
+	}
+}
+
+tracepoint:syscalls:sys_enter_getsockopt
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_gettid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_gettimeofday
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getuid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_getxattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_init_module
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_inotify_add_watch
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_inotify_init1
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_inotify_rm_watch
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_io_cancel
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_io_destroy
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_io_getevents
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_io_pgetevents
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_io_setup
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_io_submit
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_io_uring_enter
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_io_uring_register
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_io_uring_setup
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_ioctl
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_ioprio_get
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_ioprio_set
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_kcmp
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_kexec_file_load
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_kexec_load
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_keyctl
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_kill
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_landlock_add_rule
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_landlock_create_ruleset
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_landlock_restrict_self
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_lgetxattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_linkat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_listen
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_listxattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_llistxattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_lremovexattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_lseek
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_lsetxattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_madvise
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mbind
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_membarrier
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_memfd_create
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_memfd_secret
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_migrate_pages
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mincore
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mkdirat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mknodat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mlock
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mlock2
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mlockall
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mmap
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mount
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mount_setattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_move_mount
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_move_pages
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mprotect
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mq_getsetattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mq_notify
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mq_open
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mq_timedreceive
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mq_timedsend
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mq_unlink
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_mremap
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_msgctl
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_msgget
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_msgrcv
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_msgsnd
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_msync
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_munlock
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_munlockall
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_munmap
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_name_to_handle_at
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_newfstat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_newfstatat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_newuname
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_open_by_handle_at
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_open_tree
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_openat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_openat2
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_perf_event_open
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_pidfd_getfd
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_pidfd_open
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_pidfd_send_signal
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_pipe2
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_pivot_root
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_ppoll
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_prctl
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_pread64
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_preadv
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_preadv2
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_prlimit64
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_process_madvise
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_process_mrelease
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_process_vm_readv
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_process_vm_writev
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_pselect6
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_ptrace
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_pwrite64
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_pwritev
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_pwritev2
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_quotactl
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_quotactl_fd
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_read
+{
+	if(@states[pid]==5)
+	{
+		printf("docker run\n");
+		@states[pid]=0;
+	}
+	else if(@states[pid]==4)
+	{
+		@states[pid]=5;
+	}
+	else
+	{
+		@states[pid]=0;
+	}
+}
+
+tracepoint:syscalls:sys_enter_readahead
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_readlinkat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_readv
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_reboot
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_recvfrom
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_recvmmsg
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_recvmsg
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_remap_file_pages
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_removexattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_renameat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_renameat2
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_request_key
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_restart_syscall
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_rseq
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_rt_sigaction
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_rt_sigpending
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_rt_sigprocmask
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_rt_sigqueueinfo
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_rt_sigreturn
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_rt_sigsuspend
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_rt_sigtimedwait
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_rt_tgsigqueueinfo
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_get_priority_max
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_get_priority_min
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_getaffinity
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_getattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_getparam
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_getscheduler
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_rr_get_interval
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_setaffinity
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_setattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_setparam
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_setscheduler
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sched_yield
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_seccomp
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_semctl
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_semget
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_semop
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_semtimedop
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sendfile64
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sendmmsg
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sendmsg
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sendto
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_set_mempolicy
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_set_robust_list
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_set_tid_address
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setdomainname
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setfsgid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setfsuid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setgid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setgroups
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sethostname
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setitimer
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setns
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setpgid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setpriority
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setregid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setresgid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setresuid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setreuid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setrlimit
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setsid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setsockopt
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_settimeofday
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setuid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_setxattr
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_shmat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_shmctl
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_shmdt
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_shmget
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_shutdown
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sigaltstack
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_signalfd4
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_socket
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_socketpair
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_splice
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_statfs
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_statx
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_swapoff
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_swapon
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_symlinkat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sync
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sync_file_range
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_syncfs
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_sysinfo
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_syslog
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_tee
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_tgkill
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_timer_create
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_timer_delete
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_timer_getoverrun
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_timer_gettime
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_timer_settime
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_timerfd_create
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_timerfd_gettime
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_timerfd_settime
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_times
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_tkill
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_truncate
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_umask
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_umount
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_unlinkat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_unshare
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_userfaultfd
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_utimensat
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_vhangup
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_vmsplice
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_wait4
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_waitid
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_write
+{
+	@states[pid]=0;
+}
+
+tracepoint:syscalls:sys_enter_writev
+{
+	@states[pid]=0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

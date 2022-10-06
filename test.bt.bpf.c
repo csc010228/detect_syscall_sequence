@@ -13,13 +13,9 @@ struct {
 	__uint(max_entries, 1024 * 16);
 } status SEC(".maps");
 
-struct {
-	__uint(type, BPF_MAP_TYPE_RINGBUF);
-	__uint(max_entries, 256 * 1024);
-} rb SEC(".maps");
-
+#include<asm/signal.h>
 SEC("tracepoint/syscalls/sys_enter_accept")
-int handle_sys_enter_accept(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -30,7 +26,7 @@ int handle_sys_enter_accept(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_accept4")
-int handle_sys_enter_accept4(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -47,7 +43,7 @@ int handle_sys_enter_accept4(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_acct")
-int handle_sys_enter_acct(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -58,7 +54,7 @@ int handle_sys_enter_acct(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_add_key")
-int handle_sys_enter_add_key(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -69,7 +65,7 @@ int handle_sys_enter_add_key(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_adjtimex")
-int handle_sys_enter_adjtimex(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -80,7 +76,7 @@ int handle_sys_enter_adjtimex(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_arm64_personality")
-int handle_sys_enter_arm64_personality(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -91,7 +87,7 @@ int handle_sys_enter_arm64_personality(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_bind")
-int handle_sys_enter_bind(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -102,7 +98,7 @@ int handle_sys_enter_bind(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_bpf")
-int handle_sys_enter_bpf(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -113,7 +109,7 @@ int handle_sys_enter_bpf(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_brk")
-int handle_sys_enter_brk(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -124,7 +120,7 @@ int handle_sys_enter_brk(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_capget")
-int handle_sys_enter_capget(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -135,7 +131,7 @@ int handle_sys_enter_capget(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_capset")
-int handle_sys_enter_capset(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -146,7 +142,7 @@ int handle_sys_enter_capset(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_chdir")
-int handle_sys_enter_chdir(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -157,7 +153,7 @@ int handle_sys_enter_chdir(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_chroot")
-int handle_sys_enter_chroot(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -168,7 +164,7 @@ int handle_sys_enter_chroot(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_clock_adjtime")
-int handle_sys_enter_clock_adjtime(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -179,7 +175,7 @@ int handle_sys_enter_clock_adjtime(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_clock_getres")
-int handle_sys_enter_clock_getres(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -190,7 +186,7 @@ int handle_sys_enter_clock_getres(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_clock_gettime")
-int handle_sys_enter_clock_gettime(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -201,7 +197,7 @@ int handle_sys_enter_clock_gettime(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_clock_nanosleep")
-int handle_sys_enter_clock_nanosleep(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -212,7 +208,7 @@ int handle_sys_enter_clock_nanosleep(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_clock_settime")
-int handle_sys_enter_clock_settime(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -223,7 +219,7 @@ int handle_sys_enter_clock_settime(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_clone")
-int handle_sys_enter_clone(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -234,7 +230,7 @@ int handle_sys_enter_clone(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_clone3")
-int handle_sys_enter_clone3(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -245,7 +241,7 @@ int handle_sys_enter_clone3(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_close")
-int handle_sys_enter_close(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -256,7 +252,7 @@ int handle_sys_enter_close(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_close_range")
-int handle_sys_enter_close_range(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -267,7 +263,7 @@ int handle_sys_enter_close_range(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_connect")
-int handle_sys_enter_connect(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -278,7 +274,7 @@ int handle_sys_enter_connect(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_copy_file_range")
-int handle_sys_enter_copy_file_range(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -289,7 +285,7 @@ int handle_sys_enter_copy_file_range(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_delete_module")
-int handle_sys_enter_delete_module(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -300,7 +296,7 @@ int handle_sys_enter_delete_module(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_dup")
-int handle_sys_enter_dup(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -311,7 +307,7 @@ int handle_sys_enter_dup(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_dup3")
-int handle_sys_enter_dup3(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -322,7 +318,7 @@ int handle_sys_enter_dup3(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_epoll_create1")
-int handle_sys_enter_epoll_create1(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -333,7 +329,7 @@ int handle_sys_enter_epoll_create1(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_epoll_ctl")
-int handle_sys_enter_epoll_ctl(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -347,7 +343,7 @@ int handle_sys_enter_epoll_ctl(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_epoll_pwait2")
-int handle_sys_enter_epoll_pwait2(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -358,7 +354,7 @@ int handle_sys_enter_epoll_pwait2(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_eventfd2")
-int handle_sys_enter_eventfd2(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -369,7 +365,7 @@ int handle_sys_enter_eventfd2(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_execve")
-int handle_sys_enter_execve(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -380,7 +376,7 @@ int handle_sys_enter_execve(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_execveat")
-int handle_sys_enter_execveat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -391,7 +387,7 @@ int handle_sys_enter_execveat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_exit")
-int handle_sys_enter_exit(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -402,7 +398,7 @@ int handle_sys_enter_exit(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_exit_group")
-int handle_sys_enter_exit_group(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -413,7 +409,7 @@ int handle_sys_enter_exit_group(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_faccessat")
-int handle_sys_enter_faccessat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -424,7 +420,7 @@ int handle_sys_enter_faccessat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_faccessat2")
-int handle_sys_enter_faccessat2(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -435,7 +431,7 @@ int handle_sys_enter_faccessat2(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fadvise64_64")
-int handle_sys_enter_fadvise64_64(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -446,7 +442,7 @@ int handle_sys_enter_fadvise64_64(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fallocate")
-int handle_sys_enter_fallocate(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -457,7 +453,7 @@ int handle_sys_enter_fallocate(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fanotify_init")
-int handle_sys_enter_fanotify_init(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -468,7 +464,7 @@ int handle_sys_enter_fanotify_init(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fanotify_mark")
-int handle_sys_enter_fanotify_mark(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -479,7 +475,7 @@ int handle_sys_enter_fanotify_mark(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fchdir")
-int handle_sys_enter_fchdir(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -490,7 +486,7 @@ int handle_sys_enter_fchdir(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fchmod")
-int handle_sys_enter_fchmod(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -501,7 +497,7 @@ int handle_sys_enter_fchmod(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fchmodat")
-int handle_sys_enter_fchmodat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -512,7 +508,7 @@ int handle_sys_enter_fchmodat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fchown")
-int handle_sys_enter_fchown(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -523,7 +519,7 @@ int handle_sys_enter_fchown(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fchownat")
-int handle_sys_enter_fchownat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -534,7 +530,7 @@ int handle_sys_enter_fchownat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fcntl")
-int handle_sys_enter_fcntl(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -545,7 +541,7 @@ int handle_sys_enter_fcntl(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fdatasync")
-int handle_sys_enter_fdatasync(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -556,7 +552,7 @@ int handle_sys_enter_fdatasync(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fgetxattr")
-int handle_sys_enter_fgetxattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -567,7 +563,7 @@ int handle_sys_enter_fgetxattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_finit_module")
-int handle_sys_enter_finit_module(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -578,7 +574,7 @@ int handle_sys_enter_finit_module(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_flistxattr")
-int handle_sys_enter_flistxattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -589,7 +585,7 @@ int handle_sys_enter_flistxattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_flock")
-int handle_sys_enter_flock(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -600,7 +596,7 @@ int handle_sys_enter_flock(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fremovexattr")
-int handle_sys_enter_fremovexattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -611,7 +607,7 @@ int handle_sys_enter_fremovexattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fsconfig")
-int handle_sys_enter_fsconfig(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -622,7 +618,7 @@ int handle_sys_enter_fsconfig(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fsetxattr")
-int handle_sys_enter_fsetxattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -633,7 +629,7 @@ int handle_sys_enter_fsetxattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fsmount")
-int handle_sys_enter_fsmount(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -644,7 +640,7 @@ int handle_sys_enter_fsmount(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fsopen")
-int handle_sys_enter_fsopen(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -655,7 +651,7 @@ int handle_sys_enter_fsopen(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fspick")
-int handle_sys_enter_fspick(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -666,7 +662,7 @@ int handle_sys_enter_fspick(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fstatfs")
-int handle_sys_enter_fstatfs(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -677,7 +673,7 @@ int handle_sys_enter_fstatfs(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_fsync")
-int handle_sys_enter_fsync(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -688,7 +684,7 @@ int handle_sys_enter_fsync(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_ftruncate")
-int handle_sys_enter_ftruncate(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -699,7 +695,7 @@ int handle_sys_enter_ftruncate(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_get_mempolicy")
-int handle_sys_enter_get_mempolicy(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -710,7 +706,7 @@ int handle_sys_enter_get_mempolicy(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_get_robust_list")
-int handle_sys_enter_get_robust_list(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -721,7 +717,7 @@ int handle_sys_enter_get_robust_list(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getcpu")
-int handle_sys_enter_getcpu(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -732,7 +728,7 @@ int handle_sys_enter_getcpu(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getcwd")
-int handle_sys_enter_getcwd(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -743,7 +739,7 @@ int handle_sys_enter_getcwd(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getdents64")
-int handle_sys_enter_getdents64(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -754,7 +750,7 @@ int handle_sys_enter_getdents64(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getegid")
-int handle_sys_enter_getegid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -765,7 +761,7 @@ int handle_sys_enter_getegid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_geteuid")
-int handle_sys_enter_geteuid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -776,7 +772,7 @@ int handle_sys_enter_geteuid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getgid")
-int handle_sys_enter_getgid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -787,7 +783,7 @@ int handle_sys_enter_getgid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getgroups")
-int handle_sys_enter_getgroups(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -798,7 +794,7 @@ int handle_sys_enter_getgroups(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getitimer")
-int handle_sys_enter_getitimer(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -809,7 +805,7 @@ int handle_sys_enter_getitimer(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getpeername")
-int handle_sys_enter_getpeername(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -820,7 +816,7 @@ int handle_sys_enter_getpeername(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getpgid")
-int handle_sys_enter_getpgid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -831,7 +827,7 @@ int handle_sys_enter_getpgid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getpid")
-int handle_sys_enter_getpid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -842,7 +838,7 @@ int handle_sys_enter_getpid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getppid")
-int handle_sys_enter_getppid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -853,7 +849,7 @@ int handle_sys_enter_getppid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getpriority")
-int handle_sys_enter_getpriority(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -864,7 +860,7 @@ int handle_sys_enter_getpriority(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getrandom")
-int handle_sys_enter_getrandom(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -875,7 +871,7 @@ int handle_sys_enter_getrandom(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getresgid")
-int handle_sys_enter_getresgid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -886,7 +882,7 @@ int handle_sys_enter_getresgid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getresuid")
-int handle_sys_enter_getresuid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -897,7 +893,7 @@ int handle_sys_enter_getresuid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getrlimit")
-int handle_sys_enter_getrlimit(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -908,7 +904,7 @@ int handle_sys_enter_getrlimit(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getrusage")
-int handle_sys_enter_getrusage(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -919,7 +915,7 @@ int handle_sys_enter_getrusage(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getsid")
-int handle_sys_enter_getsid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -930,7 +926,7 @@ int handle_sys_enter_getsid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getsockname")
-int handle_sys_enter_getsockname(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -944,7 +940,7 @@ int handle_sys_enter_getsockname(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getsockopt")
-int handle_sys_enter_getsockopt(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -955,7 +951,7 @@ int handle_sys_enter_getsockopt(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_gettid")
-int handle_sys_enter_gettid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -966,7 +962,7 @@ int handle_sys_enter_gettid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_gettimeofday")
-int handle_sys_enter_gettimeofday(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -977,7 +973,7 @@ int handle_sys_enter_gettimeofday(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getuid")
-int handle_sys_enter_getuid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -988,7 +984,7 @@ int handle_sys_enter_getuid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_getxattr")
-int handle_sys_enter_getxattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -999,7 +995,7 @@ int handle_sys_enter_getxattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_init_module")
-int handle_sys_enter_init_module(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1010,7 +1006,7 @@ int handle_sys_enter_init_module(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_inotify_add_watch")
-int handle_sys_enter_inotify_add_watch(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1021,7 +1017,7 @@ int handle_sys_enter_inotify_add_watch(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_inotify_init1")
-int handle_sys_enter_inotify_init1(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1032,7 +1028,7 @@ int handle_sys_enter_inotify_init1(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_inotify_rm_watch")
-int handle_sys_enter_inotify_rm_watch(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1043,7 +1039,7 @@ int handle_sys_enter_inotify_rm_watch(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_io_cancel")
-int handle_sys_enter_io_cancel(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1054,7 +1050,7 @@ int handle_sys_enter_io_cancel(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_io_destroy")
-int handle_sys_enter_io_destroy(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1065,7 +1061,7 @@ int handle_sys_enter_io_destroy(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_io_getevents")
-int handle_sys_enter_io_getevents(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1076,7 +1072,7 @@ int handle_sys_enter_io_getevents(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_io_pgetevents")
-int handle_sys_enter_io_pgetevents(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1087,7 +1083,7 @@ int handle_sys_enter_io_pgetevents(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_io_setup")
-int handle_sys_enter_io_setup(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1098,7 +1094,7 @@ int handle_sys_enter_io_setup(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_io_submit")
-int handle_sys_enter_io_submit(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1109,7 +1105,7 @@ int handle_sys_enter_io_submit(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_io_uring_enter")
-int handle_sys_enter_io_uring_enter(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1120,7 +1116,7 @@ int handle_sys_enter_io_uring_enter(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_io_uring_register")
-int handle_sys_enter_io_uring_register(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1131,7 +1127,7 @@ int handle_sys_enter_io_uring_register(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_io_uring_setup")
-int handle_sys_enter_io_uring_setup(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1142,7 +1138,7 @@ int handle_sys_enter_io_uring_setup(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_ioctl")
-int handle_sys_enter_ioctl(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1153,7 +1149,7 @@ int handle_sys_enter_ioctl(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_ioprio_get")
-int handle_sys_enter_ioprio_get(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1164,7 +1160,7 @@ int handle_sys_enter_ioprio_get(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_ioprio_set")
-int handle_sys_enter_ioprio_set(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1175,7 +1171,7 @@ int handle_sys_enter_ioprio_set(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_kcmp")
-int handle_sys_enter_kcmp(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1186,7 +1182,7 @@ int handle_sys_enter_kcmp(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_kexec_file_load")
-int handle_sys_enter_kexec_file_load(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1197,7 +1193,7 @@ int handle_sys_enter_kexec_file_load(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_kexec_load")
-int handle_sys_enter_kexec_load(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1208,7 +1204,7 @@ int handle_sys_enter_kexec_load(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_keyctl")
-int handle_sys_enter_keyctl(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1219,7 +1215,7 @@ int handle_sys_enter_keyctl(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_kill")
-int handle_sys_enter_kill(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1230,7 +1226,7 @@ int handle_sys_enter_kill(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_landlock_add_rule")
-int handle_sys_enter_landlock_add_rule(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1241,7 +1237,7 @@ int handle_sys_enter_landlock_add_rule(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_landlock_create_ruleset")
-int handle_sys_enter_landlock_create_ruleset(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1252,7 +1248,7 @@ int handle_sys_enter_landlock_create_ruleset(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_landlock_restrict_self")
-int handle_sys_enter_landlock_restrict_self(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1263,7 +1259,7 @@ int handle_sys_enter_landlock_restrict_self(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_lgetxattr")
-int handle_sys_enter_lgetxattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1274,7 +1270,7 @@ int handle_sys_enter_lgetxattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_linkat")
-int handle_sys_enter_linkat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1285,7 +1281,7 @@ int handle_sys_enter_linkat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_listen")
-int handle_sys_enter_listen(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1296,7 +1292,7 @@ int handle_sys_enter_listen(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_listxattr")
-int handle_sys_enter_listxattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1307,7 +1303,7 @@ int handle_sys_enter_listxattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_llistxattr")
-int handle_sys_enter_llistxattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1318,7 +1314,7 @@ int handle_sys_enter_llistxattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_lremovexattr")
-int handle_sys_enter_lremovexattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1329,7 +1325,7 @@ int handle_sys_enter_lremovexattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_lseek")
-int handle_sys_enter_lseek(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1340,7 +1336,7 @@ int handle_sys_enter_lseek(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_lsetxattr")
-int handle_sys_enter_lsetxattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1351,7 +1347,7 @@ int handle_sys_enter_lsetxattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_madvise")
-int handle_sys_enter_madvise(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1362,7 +1358,7 @@ int handle_sys_enter_madvise(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mbind")
-int handle_sys_enter_mbind(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1373,7 +1369,7 @@ int handle_sys_enter_mbind(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_membarrier")
-int handle_sys_enter_membarrier(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1384,7 +1380,7 @@ int handle_sys_enter_membarrier(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_memfd_create")
-int handle_sys_enter_memfd_create(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1395,7 +1391,7 @@ int handle_sys_enter_memfd_create(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_memfd_secret")
-int handle_sys_enter_memfd_secret(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1406,7 +1402,7 @@ int handle_sys_enter_memfd_secret(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_migrate_pages")
-int handle_sys_enter_migrate_pages(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1417,7 +1413,7 @@ int handle_sys_enter_migrate_pages(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mincore")
-int handle_sys_enter_mincore(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1428,7 +1424,7 @@ int handle_sys_enter_mincore(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mkdirat")
-int handle_sys_enter_mkdirat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1439,7 +1435,7 @@ int handle_sys_enter_mkdirat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mknodat")
-int handle_sys_enter_mknodat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1450,7 +1446,7 @@ int handle_sys_enter_mknodat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mlock")
-int handle_sys_enter_mlock(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1461,7 +1457,7 @@ int handle_sys_enter_mlock(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mlock2")
-int handle_sys_enter_mlock2(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1472,7 +1468,7 @@ int handle_sys_enter_mlock2(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mlockall")
-int handle_sys_enter_mlockall(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1483,7 +1479,7 @@ int handle_sys_enter_mlockall(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mmap")
-int handle_sys_enter_mmap(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1494,7 +1490,7 @@ int handle_sys_enter_mmap(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mount")
-int handle_sys_enter_mount(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1505,7 +1501,7 @@ int handle_sys_enter_mount(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mount_setattr")
-int handle_sys_enter_mount_setattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1516,7 +1512,7 @@ int handle_sys_enter_mount_setattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_move_mount")
-int handle_sys_enter_move_mount(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1527,7 +1523,7 @@ int handle_sys_enter_move_mount(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_move_pages")
-int handle_sys_enter_move_pages(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1538,7 +1534,7 @@ int handle_sys_enter_move_pages(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mprotect")
-int handle_sys_enter_mprotect(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1549,7 +1545,7 @@ int handle_sys_enter_mprotect(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mq_getsetattr")
-int handle_sys_enter_mq_getsetattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1560,7 +1556,7 @@ int handle_sys_enter_mq_getsetattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mq_notify")
-int handle_sys_enter_mq_notify(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1571,7 +1567,7 @@ int handle_sys_enter_mq_notify(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mq_open")
-int handle_sys_enter_mq_open(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1582,7 +1578,7 @@ int handle_sys_enter_mq_open(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mq_timedreceive")
-int handle_sys_enter_mq_timedreceive(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1593,7 +1589,7 @@ int handle_sys_enter_mq_timedreceive(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mq_timedsend")
-int handle_sys_enter_mq_timedsend(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1604,7 +1600,7 @@ int handle_sys_enter_mq_timedsend(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mq_unlink")
-int handle_sys_enter_mq_unlink(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1615,7 +1611,7 @@ int handle_sys_enter_mq_unlink(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_mremap")
-int handle_sys_enter_mremap(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1626,7 +1622,7 @@ int handle_sys_enter_mremap(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_msgctl")
-int handle_sys_enter_msgctl(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1637,7 +1633,7 @@ int handle_sys_enter_msgctl(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_msgget")
-int handle_sys_enter_msgget(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1648,7 +1644,7 @@ int handle_sys_enter_msgget(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_msgrcv")
-int handle_sys_enter_msgrcv(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1659,7 +1655,7 @@ int handle_sys_enter_msgrcv(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_msgsnd")
-int handle_sys_enter_msgsnd(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1670,7 +1666,7 @@ int handle_sys_enter_msgsnd(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_msync")
-int handle_sys_enter_msync(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1681,7 +1677,7 @@ int handle_sys_enter_msync(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_munlock")
-int handle_sys_enter_munlock(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1692,7 +1688,7 @@ int handle_sys_enter_munlock(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_munlockall")
-int handle_sys_enter_munlockall(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1703,7 +1699,7 @@ int handle_sys_enter_munlockall(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_munmap")
-int handle_sys_enter_munmap(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1714,7 +1710,7 @@ int handle_sys_enter_munmap(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_name_to_handle_at")
-int handle_sys_enter_name_to_handle_at(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1725,7 +1721,7 @@ int handle_sys_enter_name_to_handle_at(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_newfstat")
-int handle_sys_enter_newfstat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1736,7 +1732,7 @@ int handle_sys_enter_newfstat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_newfstatat")
-int handle_sys_enter_newfstatat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1747,7 +1743,7 @@ int handle_sys_enter_newfstatat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_newuname")
-int handle_sys_enter_newuname(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1758,7 +1754,7 @@ int handle_sys_enter_newuname(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_open_by_handle_at")
-int handle_sys_enter_open_by_handle_at(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1769,7 +1765,7 @@ int handle_sys_enter_open_by_handle_at(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_open_tree")
-int handle_sys_enter_open_tree(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1780,7 +1776,7 @@ int handle_sys_enter_open_tree(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_openat")
-int handle_sys_enter_openat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1795,7 +1791,7 @@ int handle_sys_enter_openat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_openat2")
-int handle_sys_enter_openat2(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1806,7 +1802,7 @@ int handle_sys_enter_openat2(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_perf_event_open")
-int handle_sys_enter_perf_event_open(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1817,7 +1813,7 @@ int handle_sys_enter_perf_event_open(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_pidfd_getfd")
-int handle_sys_enter_pidfd_getfd(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1828,7 +1824,7 @@ int handle_sys_enter_pidfd_getfd(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_pidfd_open")
-int handle_sys_enter_pidfd_open(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1839,7 +1835,7 @@ int handle_sys_enter_pidfd_open(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_pidfd_send_signal")
-int handle_sys_enter_pidfd_send_signal(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1850,7 +1846,7 @@ int handle_sys_enter_pidfd_send_signal(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_pipe2")
-int handle_sys_enter_pipe2(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1861,7 +1857,7 @@ int handle_sys_enter_pipe2(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_pivot_root")
-int handle_sys_enter_pivot_root(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1872,7 +1868,7 @@ int handle_sys_enter_pivot_root(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_ppoll")
-int handle_sys_enter_ppoll(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1883,7 +1879,7 @@ int handle_sys_enter_ppoll(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_prctl")
-int handle_sys_enter_prctl(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1894,7 +1890,7 @@ int handle_sys_enter_prctl(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_pread64")
-int handle_sys_enter_pread64(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1905,7 +1901,7 @@ int handle_sys_enter_pread64(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_preadv")
-int handle_sys_enter_preadv(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1916,7 +1912,7 @@ int handle_sys_enter_preadv(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_preadv2")
-int handle_sys_enter_preadv2(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1927,7 +1923,7 @@ int handle_sys_enter_preadv2(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_prlimit64")
-int handle_sys_enter_prlimit64(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1938,7 +1934,7 @@ int handle_sys_enter_prlimit64(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_process_madvise")
-int handle_sys_enter_process_madvise(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1949,7 +1945,7 @@ int handle_sys_enter_process_madvise(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_process_mrelease")
-int handle_sys_enter_process_mrelease(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1960,7 +1956,7 @@ int handle_sys_enter_process_mrelease(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_process_vm_readv")
-int handle_sys_enter_process_vm_readv(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1971,7 +1967,7 @@ int handle_sys_enter_process_vm_readv(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_process_vm_writev")
-int handle_sys_enter_process_vm_writev(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1982,7 +1978,7 @@ int handle_sys_enter_process_vm_writev(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_pselect6")
-int handle_sys_enter_pselect6(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -1993,7 +1989,7 @@ int handle_sys_enter_pselect6(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_ptrace")
-int handle_sys_enter_ptrace(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2004,7 +2000,7 @@ int handle_sys_enter_ptrace(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_pwrite64")
-int handle_sys_enter_pwrite64(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2015,7 +2011,7 @@ int handle_sys_enter_pwrite64(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_pwritev")
-int handle_sys_enter_pwritev(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2026,7 +2022,7 @@ int handle_sys_enter_pwritev(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_pwritev2")
-int handle_sys_enter_pwritev2(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2037,7 +2033,7 @@ int handle_sys_enter_pwritev2(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_quotactl")
-int handle_sys_enter_quotactl(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2048,7 +2044,7 @@ int handle_sys_enter_quotactl(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_quotactl_fd")
-int handle_sys_enter_quotactl_fd(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2059,7 +2055,7 @@ int handle_sys_enter_quotactl_fd(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_read")
-int handle_sys_enter_read(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2085,7 +2081,7 @@ int handle_sys_enter_read(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_readahead")
-int handle_sys_enter_readahead(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2096,7 +2092,7 @@ int handle_sys_enter_readahead(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_readlinkat")
-int handle_sys_enter_readlinkat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2107,7 +2103,7 @@ int handle_sys_enter_readlinkat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_readv")
-int handle_sys_enter_readv(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2118,7 +2114,7 @@ int handle_sys_enter_readv(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_reboot")
-int handle_sys_enter_reboot(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2129,7 +2125,7 @@ int handle_sys_enter_reboot(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_recvfrom")
-int handle_sys_enter_recvfrom(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2140,7 +2136,7 @@ int handle_sys_enter_recvfrom(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_recvmmsg")
-int handle_sys_enter_recvmmsg(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2151,7 +2147,7 @@ int handle_sys_enter_recvmmsg(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_recvmsg")
-int handle_sys_enter_recvmsg(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2162,7 +2158,7 @@ int handle_sys_enter_recvmsg(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_remap_file_pages")
-int handle_sys_enter_remap_file_pages(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2173,7 +2169,7 @@ int handle_sys_enter_remap_file_pages(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_removexattr")
-int handle_sys_enter_removexattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2184,7 +2180,7 @@ int handle_sys_enter_removexattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_renameat")
-int handle_sys_enter_renameat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2195,7 +2191,7 @@ int handle_sys_enter_renameat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_renameat2")
-int handle_sys_enter_renameat2(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2206,7 +2202,7 @@ int handle_sys_enter_renameat2(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_request_key")
-int handle_sys_enter_request_key(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2217,7 +2213,7 @@ int handle_sys_enter_request_key(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_restart_syscall")
-int handle_sys_enter_restart_syscall(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2228,7 +2224,7 @@ int handle_sys_enter_restart_syscall(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_rseq")
-int handle_sys_enter_rseq(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2239,7 +2235,7 @@ int handle_sys_enter_rseq(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_rt_sigaction")
-int handle_sys_enter_rt_sigaction(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2250,7 +2246,7 @@ int handle_sys_enter_rt_sigaction(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_rt_sigpending")
-int handle_sys_enter_rt_sigpending(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2261,7 +2257,7 @@ int handle_sys_enter_rt_sigpending(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_rt_sigprocmask")
-int handle_sys_enter_rt_sigprocmask(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2272,7 +2268,7 @@ int handle_sys_enter_rt_sigprocmask(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_rt_sigqueueinfo")
-int handle_sys_enter_rt_sigqueueinfo(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2283,7 +2279,7 @@ int handle_sys_enter_rt_sigqueueinfo(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_rt_sigreturn")
-int handle_sys_enter_rt_sigreturn(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2294,7 +2290,7 @@ int handle_sys_enter_rt_sigreturn(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_rt_sigsuspend")
-int handle_sys_enter_rt_sigsuspend(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2305,7 +2301,7 @@ int handle_sys_enter_rt_sigsuspend(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_rt_sigtimedwait")
-int handle_sys_enter_rt_sigtimedwait(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2316,7 +2312,7 @@ int handle_sys_enter_rt_sigtimedwait(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_rt_tgsigqueueinfo")
-int handle_sys_enter_rt_tgsigqueueinfo(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2327,7 +2323,7 @@ int handle_sys_enter_rt_tgsigqueueinfo(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_get_priority_max")
-int handle_sys_enter_sched_get_priority_max(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2338,7 +2334,7 @@ int handle_sys_enter_sched_get_priority_max(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_get_priority_min")
-int handle_sys_enter_sched_get_priority_min(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2349,7 +2345,7 @@ int handle_sys_enter_sched_get_priority_min(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_getaffinity")
-int handle_sys_enter_sched_getaffinity(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2360,7 +2356,7 @@ int handle_sys_enter_sched_getaffinity(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_getattr")
-int handle_sys_enter_sched_getattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2371,7 +2367,7 @@ int handle_sys_enter_sched_getattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_getparam")
-int handle_sys_enter_sched_getparam(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2382,7 +2378,7 @@ int handle_sys_enter_sched_getparam(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_getscheduler")
-int handle_sys_enter_sched_getscheduler(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2393,7 +2389,7 @@ int handle_sys_enter_sched_getscheduler(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_rr_get_interval")
-int handle_sys_enter_sched_rr_get_interval(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2404,7 +2400,7 @@ int handle_sys_enter_sched_rr_get_interval(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_setaffinity")
-int handle_sys_enter_sched_setaffinity(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2415,7 +2411,7 @@ int handle_sys_enter_sched_setaffinity(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_setattr")
-int handle_sys_enter_sched_setattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2426,7 +2422,7 @@ int handle_sys_enter_sched_setattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_setparam")
-int handle_sys_enter_sched_setparam(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2437,7 +2433,7 @@ int handle_sys_enter_sched_setparam(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_setscheduler")
-int handle_sys_enter_sched_setscheduler(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2448,7 +2444,7 @@ int handle_sys_enter_sched_setscheduler(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sched_yield")
-int handle_sys_enter_sched_yield(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2459,7 +2455,7 @@ int handle_sys_enter_sched_yield(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_seccomp")
-int handle_sys_enter_seccomp(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2470,7 +2466,7 @@ int handle_sys_enter_seccomp(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_semctl")
-int handle_sys_enter_semctl(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2481,7 +2477,7 @@ int handle_sys_enter_semctl(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_semget")
-int handle_sys_enter_semget(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2492,7 +2488,7 @@ int handle_sys_enter_semget(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_semop")
-int handle_sys_enter_semop(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2503,7 +2499,7 @@ int handle_sys_enter_semop(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_semtimedop")
-int handle_sys_enter_semtimedop(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2514,7 +2510,7 @@ int handle_sys_enter_semtimedop(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sendfile64")
-int handle_sys_enter_sendfile64(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2525,7 +2521,7 @@ int handle_sys_enter_sendfile64(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sendmmsg")
-int handle_sys_enter_sendmmsg(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2536,7 +2532,7 @@ int handle_sys_enter_sendmmsg(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sendmsg")
-int handle_sys_enter_sendmsg(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2547,7 +2543,7 @@ int handle_sys_enter_sendmsg(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sendto")
-int handle_sys_enter_sendto(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2558,7 +2554,7 @@ int handle_sys_enter_sendto(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_set_mempolicy")
-int handle_sys_enter_set_mempolicy(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2569,7 +2565,7 @@ int handle_sys_enter_set_mempolicy(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_set_robust_list")
-int handle_sys_enter_set_robust_list(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2580,7 +2576,7 @@ int handle_sys_enter_set_robust_list(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_set_tid_address")
-int handle_sys_enter_set_tid_address(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2591,7 +2587,7 @@ int handle_sys_enter_set_tid_address(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setdomainname")
-int handle_sys_enter_setdomainname(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2602,7 +2598,7 @@ int handle_sys_enter_setdomainname(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setfsgid")
-int handle_sys_enter_setfsgid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2613,7 +2609,7 @@ int handle_sys_enter_setfsgid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setfsuid")
-int handle_sys_enter_setfsuid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2624,7 +2620,7 @@ int handle_sys_enter_setfsuid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setgid")
-int handle_sys_enter_setgid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2635,7 +2631,7 @@ int handle_sys_enter_setgid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setgroups")
-int handle_sys_enter_setgroups(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2646,7 +2642,7 @@ int handle_sys_enter_setgroups(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sethostname")
-int handle_sys_enter_sethostname(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2657,7 +2653,7 @@ int handle_sys_enter_sethostname(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setitimer")
-int handle_sys_enter_setitimer(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2668,7 +2664,7 @@ int handle_sys_enter_setitimer(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setns")
-int handle_sys_enter_setns(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2679,7 +2675,7 @@ int handle_sys_enter_setns(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setpgid")
-int handle_sys_enter_setpgid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2690,7 +2686,7 @@ int handle_sys_enter_setpgid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setpriority")
-int handle_sys_enter_setpriority(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2701,7 +2697,7 @@ int handle_sys_enter_setpriority(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setregid")
-int handle_sys_enter_setregid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2712,7 +2708,7 @@ int handle_sys_enter_setregid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setresgid")
-int handle_sys_enter_setresgid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2723,7 +2719,7 @@ int handle_sys_enter_setresgid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setresuid")
-int handle_sys_enter_setresuid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2734,7 +2730,7 @@ int handle_sys_enter_setresuid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setreuid")
-int handle_sys_enter_setreuid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2745,7 +2741,7 @@ int handle_sys_enter_setreuid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setrlimit")
-int handle_sys_enter_setrlimit(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2756,7 +2752,7 @@ int handle_sys_enter_setrlimit(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setsid")
-int handle_sys_enter_setsid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2767,7 +2763,7 @@ int handle_sys_enter_setsid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setsockopt")
-int handle_sys_enter_setsockopt(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2778,7 +2774,7 @@ int handle_sys_enter_setsockopt(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_settimeofday")
-int handle_sys_enter_settimeofday(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2789,7 +2785,7 @@ int handle_sys_enter_settimeofday(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setuid")
-int handle_sys_enter_setuid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2800,7 +2796,7 @@ int handle_sys_enter_setuid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_setxattr")
-int handle_sys_enter_setxattr(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2811,7 +2807,7 @@ int handle_sys_enter_setxattr(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_shmat")
-int handle_sys_enter_shmat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2822,7 +2818,7 @@ int handle_sys_enter_shmat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_shmctl")
-int handle_sys_enter_shmctl(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2833,7 +2829,7 @@ int handle_sys_enter_shmctl(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_shmdt")
-int handle_sys_enter_shmdt(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2844,7 +2840,7 @@ int handle_sys_enter_shmdt(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_shmget")
-int handle_sys_enter_shmget(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2855,7 +2851,7 @@ int handle_sys_enter_shmget(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_shutdown")
-int handle_sys_enter_shutdown(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2866,7 +2862,7 @@ int handle_sys_enter_shutdown(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sigaltstack")
-int handle_sys_enter_sigaltstack(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2877,7 +2873,7 @@ int handle_sys_enter_sigaltstack(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_signalfd4")
-int handle_sys_enter_signalfd4(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2888,7 +2884,7 @@ int handle_sys_enter_signalfd4(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_socket")
-int handle_sys_enter_socket(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2899,7 +2895,7 @@ int handle_sys_enter_socket(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_socketpair")
-int handle_sys_enter_socketpair(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2910,7 +2906,7 @@ int handle_sys_enter_socketpair(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_splice")
-int handle_sys_enter_splice(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2921,7 +2917,7 @@ int handle_sys_enter_splice(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_statfs")
-int handle_sys_enter_statfs(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2932,7 +2928,7 @@ int handle_sys_enter_statfs(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_statx")
-int handle_sys_enter_statx(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2943,7 +2939,7 @@ int handle_sys_enter_statx(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_swapoff")
-int handle_sys_enter_swapoff(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2954,7 +2950,7 @@ int handle_sys_enter_swapoff(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_swapon")
-int handle_sys_enter_swapon(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2965,7 +2961,7 @@ int handle_sys_enter_swapon(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_symlinkat")
-int handle_sys_enter_symlinkat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2976,7 +2972,7 @@ int handle_sys_enter_symlinkat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sync")
-int handle_sys_enter_sync(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2987,7 +2983,7 @@ int handle_sys_enter_sync(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sync_file_range")
-int handle_sys_enter_sync_file_range(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -2998,7 +2994,7 @@ int handle_sys_enter_sync_file_range(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_syncfs")
-int handle_sys_enter_syncfs(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3009,7 +3005,7 @@ int handle_sys_enter_syncfs(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_sysinfo")
-int handle_sys_enter_sysinfo(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3020,7 +3016,7 @@ int handle_sys_enter_sysinfo(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_syslog")
-int handle_sys_enter_syslog(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3031,7 +3027,7 @@ int handle_sys_enter_syslog(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_tee")
-int handle_sys_enter_tee(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3042,7 +3038,7 @@ int handle_sys_enter_tee(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_tgkill")
-int handle_sys_enter_tgkill(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3053,7 +3049,7 @@ int handle_sys_enter_tgkill(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_timer_create")
-int handle_sys_enter_timer_create(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3064,7 +3060,7 @@ int handle_sys_enter_timer_create(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_timer_delete")
-int handle_sys_enter_timer_delete(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3075,7 +3071,7 @@ int handle_sys_enter_timer_delete(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_timer_getoverrun")
-int handle_sys_enter_timer_getoverrun(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3086,7 +3082,7 @@ int handle_sys_enter_timer_getoverrun(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_timer_gettime")
-int handle_sys_enter_timer_gettime(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3097,7 +3093,7 @@ int handle_sys_enter_timer_gettime(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_timer_settime")
-int handle_sys_enter_timer_settime(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3108,7 +3104,7 @@ int handle_sys_enter_timer_settime(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_timerfd_create")
-int handle_sys_enter_timerfd_create(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3119,7 +3115,7 @@ int handle_sys_enter_timerfd_create(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_timerfd_gettime")
-int handle_sys_enter_timerfd_gettime(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3130,7 +3126,7 @@ int handle_sys_enter_timerfd_gettime(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_timerfd_settime")
-int handle_sys_enter_timerfd_settime(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3141,7 +3137,7 @@ int handle_sys_enter_timerfd_settime(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_times")
-int handle_sys_enter_times(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3152,7 +3148,7 @@ int handle_sys_enter_times(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_tkill")
-int handle_sys_enter_tkill(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3163,7 +3159,7 @@ int handle_sys_enter_tkill(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_truncate")
-int handle_sys_enter_truncate(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3174,7 +3170,7 @@ int handle_sys_enter_truncate(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_umask")
-int handle_sys_enter_umask(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3185,7 +3181,7 @@ int handle_sys_enter_umask(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_umount")
-int handle_sys_enter_umount(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3196,7 +3192,7 @@ int handle_sys_enter_umount(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_unlinkat")
-int handle_sys_enter_unlinkat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3207,7 +3203,7 @@ int handle_sys_enter_unlinkat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_unshare")
-int handle_sys_enter_unshare(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3218,7 +3214,7 @@ int handle_sys_enter_unshare(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_userfaultfd")
-int handle_sys_enter_userfaultfd(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3229,7 +3225,7 @@ int handle_sys_enter_userfaultfd(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_utimensat")
-int handle_sys_enter_utimensat(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3240,7 +3236,7 @@ int handle_sys_enter_utimensat(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_vhangup")
-int handle_sys_enter_vhangup(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3251,7 +3247,7 @@ int handle_sys_enter_vhangup(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_vmsplice")
-int handle_sys_enter_vmsplice(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3262,7 +3258,7 @@ int handle_sys_enter_vmsplice(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_wait4")
-int handle_sys_enter_wait4(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3273,7 +3269,7 @@ int handle_sys_enter_wait4(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_waitid")
-int handle_sys_enter_waitid(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3284,7 +3280,7 @@ int handle_sys_enter_waitid(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_write")
-int handle_sys_enter_write(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);
@@ -3301,7 +3297,7 @@ int handle_sys_enter_write(void *ctx)
 }
 
 SEC("tracepoint/syscalls/sys_enter_writev")
-int handle_sys_enter_writev(void *ctx)
+int handle_accept4(void *ctx)
 {
 	pid_t pid = bpf_get_current_pid_tgid() >> 32;
 	size_t *current_status_p = bpf_map_lookup_elem(&status, &pid);

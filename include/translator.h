@@ -162,11 +162,12 @@ struct syscall_probe {
         if (type == syscall_probe_type::EXIT && transitions_and_stop_actions.size() == 0) return "";
 
         res = "SEC(\"" + replace_char(probe_name, ':', '/') + "\")\n";
-        res += "int handle_accept4(void *ctx)\n{\n";
+        res += "int handle_" + get_string_after_char(probe_name, ':') + "(void *ctx)\n{\n";
 
         res += "\tpid_t pid = bpf_get_current_pid_tgid() >> 32;\n";
         res += "\tsize_t *current_status_p = bpf_map_lookup_elem(&status, &pid);\n";
         res += "\tsize_t next_status;\n";
+        res += "\tif (!current_status_p) {\n\t\tnext_status = 0;\n\t}\n";
 
         // switch(detection_atom) {
         // case syscall_detection_atom::PROCESS:
@@ -180,10 +181,11 @@ struct syscall_probe {
         // }
 
         for(auto i : transitions_and_stop_actions) {
-            if (first_tag) {
-                first_tag = false;
-                res += "\t";
-            } else res += "\telse ";
+            // if (first_tag) {
+            //     first_tag = false;
+            //     res += "\t";
+            // } else res += "\telse ";
+            res += "\telse ";
             action.clear();
             for (auto j : i.first.transition->action) action += j;
             res += ("if (*current_status_p == " + std::to_string(i.first.from_state));
@@ -196,8 +198,8 @@ struct syscall_probe {
             } else to_state_str = std::to_string(i.first.to_state);
             res += ("\t\tnext_status = " + to_state_str + ";\n\t}\n");
         }
-        if (!first_tag) res += "\telse next_status = 0;\n";
-        else res += "\tnext_status = 0;\n";
+        res += "\telse next_status = 0;\n";
+        // else res += "\tnext_status = 0;\n";
 
         res += "\tbpf_map_update_elem(&status, &pid, &next_status, BPF_ANY);\n\treturn 0;\n}\n";
         return res;
