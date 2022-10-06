@@ -114,13 +114,13 @@
 * 只需要拷贝源代码，然后进入项目文件夹之后，输入`make`进行编译，会得到一个`dss`可执行文件，按照如下方式执行即可：
 
   ```she
-  ./dss example.txt --bpftrace test.bt
+  ./dss example.txt --bpftrace test
   ```
   或者
   ```she
-  ./dss example.txt --libbpf test.bt
+  ./dss example.txt --libbpf test
   ```
 
-  * `example.txt`是要dss语言的源文件名，`test.bt`是最终要生成的bt文件名
+  * `example.txt`是要dss语言的源文件名，`test`是最终要生成的文件名
   * `--bpftrace`表示最终输出为.bt文件
   * `--libbpf`表示最终输出为.c和.bpf.c文件
