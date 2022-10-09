@@ -1,0 +1,33 @@
+#atom thread
+
+#ignore sys_nanosleep,sys_futex,sys_sched_yield,sys_epoll_pwait,sys_rt_sigreturn,sys_tgkill
+
+#sequence
+    sys_enter_openat->sys_enter_getpid->
+    sys_enter_gettid->sys_enter_openat->
+    sys_enter_setns->sys_enter_socket->
+    sys_enter_bind->sys_enter_setns->
+    sys_enter_close->sys_enter_setsockopt->
+    sys_enter_setsockopt->sys_enter_openat->
+    sys_enter_epoll_ctl->sys_enter_pipe2->
+    sys_enter_getpid->sys_enter_rt_sigprocmask->
+    sys_enter_rt_sigprocmask->sys_enter_clone->
+    sys_enter_getpid+->
+    sys_enter_rt_sigprocmask->sys_enter_close;
+#do
+    bpf_printk("docker run\n");
+#end
+
+#sequence
+    sys_enter_openat->sys_enter_epoll_ctl->
+    sys_enter_write->sys_enter_fsync->
+    sys_enter_close->sys_enter_fchmodat->
+    sys_enter_newfstatat->sys_enter_renameat->
+    sys_enter_newfstatat->sys_enter_openat->
+    sys_enter_epoll_ctl->sys_enter_write->
+    sys_enter_newfstatat->sys_enter_openat->
+    sys_enter_epoll_ctl->sys_enter_write->
+    sys_enter_fsync->sys_enter_close;
+#do
+    bpf_printk("docker create\n");
+#end

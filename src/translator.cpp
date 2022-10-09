@@ -204,7 +204,7 @@ bool Translator::input_source_file(string source_filename, enum output_file_type
                 sequence_action.clear();
                 step = source_file_parse_step::NONE;
             } else {
-                sequence_action += line;
+                sequence_action += "\t\t" + line + '\n';
             }
             out<<endl;
             break;
@@ -336,6 +336,8 @@ bool Translator::output_bpftrace_file(string output_filename, enum output_file_t
         out_auxiliary << "\t\tfprintf(stderr, \"Failed to attach BPF skeleton\\n\");" <<endl;
         out_auxiliary << "\t\tgoto cleanup;" <<endl;
         out_auxiliary << "\t}\n" <<endl;
+        out_auxiliary << "\tprintf(\"Successfully started! Please run `sudo cat /sys/kernel/debug/tracing/trace_pipe` \"" <<endl;
+	    out_auxiliary << "\t\t\"to see output of the BPF programs.\\n\");\n" <<endl;
         out_auxiliary << "\tprintf(\"Press Ctrl-C to stop.\\n\");\n" <<endl;
         out_auxiliary << "\t/* Process events */" <<endl;
         out_auxiliary << "\twhile (!exiting) {" <<endl;

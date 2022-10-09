@@ -199,7 +199,8 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 {
 	if(@states[pid,tid]==98 && (args->epfd==4 && args->maxevents==128))
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cd");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cd");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==97 && (args->epfd==4 && args->maxevents==128))
@@ -208,7 +209,8 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==94 && (args->epfd==4 && args->maxevents==128))
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cd");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cd");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==93 && (args->epfd==4 && args->maxevents==128))
@@ -217,7 +219,8 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==86 && (args->epfd==4 && args->maxevents==128))
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"mkdir");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"mkdir");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==85 && (args->epfd==4 && args->maxevents==128))
@@ -226,7 +229,8 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==81 && (args->epfd==4 && args->maxevents==128))
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"ls");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"ls");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==80 && (args->epfd==4 && args->maxevents==128))
@@ -235,7 +239,8 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==73)
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==72)
@@ -244,12 +249,14 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==71)
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==70)
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==69)
@@ -258,7 +265,8 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==62 && (args->epfd==4 && args->maxevents==128))
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"rm");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"rm");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==61 && (args->epfd==4 && args->maxevents==128))
@@ -271,12 +279,14 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==55)
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==53 && (args->epfd==4 && args->maxevents==128))
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"pwd");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"pwd");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==52 && (args->epfd==4 && args->maxevents==128))
@@ -289,7 +299,8 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==47 && (args->epfd==4 && args->maxevents==128))
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"mkdir");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"mkdir");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==46 && (args->epfd==4 && args->maxevents==128))
@@ -298,7 +309,8 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==42 && (args->epfd==4 && args->maxevents==128))
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"ls");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"ls");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==41 && (args->epfd==4 && args->maxevents==128))
@@ -307,7 +319,8 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==34)
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==33)
@@ -316,12 +329,14 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==32)
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==31)
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==30)
@@ -330,7 +345,8 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==23 && (args->epfd==4 && args->maxevents==128))
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"rm");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"rm");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==22 && (args->epfd==4 && args->maxevents==128))
@@ -343,12 +359,14 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==16)
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"cat");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==14 && (args->epfd==4 && args->maxevents==128))
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"pwd");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"pwd");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==13 && (args->epfd==4 && args->maxevents==128))
@@ -357,7 +375,8 @@ tracepoint:syscalls:sys_enter_epoll_pwait
 	}
 	else if(@states[pid,tid]==7 && (args->epfd==4 && args->maxevents==128))
 	{
-		time("%H:%M:%S  ");printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"ping");
+		time("%H:%M:%S  ");
+		printf("%-20s %-10d %-10d %-20s\n",comm,pid,tid,"ping");
 		@states[pid,tid]=0;
 	}
 	else if(@states[pid,tid]==6 && (args->epfd==4 && args->maxevents==128))
@@ -1282,10 +1301,14 @@ tracepoint:syscalls:sys_enter_read
 	}
 	else if(@states[pid,tid]==1 && (args->fd==3 && args->count==1676))
 	{
+		printf("read1\n");
+		printf("read2\n");
 		@states[pid,tid]=2;
 	}
 	else if(@states[pid,tid]==0 && (args->fd==3 && args->count==1676))
 	{
+		printf("read1\n");
+		printf("read2\n");
 		@states[pid,tid]=1;
 	}
 	else if(@states[pid,tid]==27)

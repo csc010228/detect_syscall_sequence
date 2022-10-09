@@ -135,13 +135,13 @@ struct syscall_probe {
                 res += "\t";
             } else res += "\telse ";
             action.clear();
-            for (auto j : i.first.transition->action) action += j;
+            for (auto j : i.first.transition->action) action += "\t\t" + j + '\n';
             res += ("if(" + atom + "==" + std::to_string(i.first.from_state));
             if (i.first.transition->condition.size() > 0) res += (" && (" + i.first.transition->condition + ")");
             res += (")\n\t{\n");
-            if (action.size() > 0) res+=("\t\t"+action+"\n");
-            if (i.second.size()>0) {
-                res += ("\t\t"+i.second+"\n");
+            if (action.size() > 0) res += action;
+            if (i.second.size() > 0) {
+                res += i.second;
                 to_state_str = "0";
             } else to_state_str = std::to_string(i.first.to_state);
             res += ("\t\t" + atom + "=" + to_state_str + ";\n");
@@ -187,13 +187,13 @@ struct syscall_probe {
             // } else res += "\telse ";
             res += "\telse ";
             action.clear();
-            for (auto j : i.first.transition->action) action += j;
+            for (auto j : i.first.transition->action) action += "\t\t" + j + '\n';
             res += ("if (*current_status_p == " + std::to_string(i.first.from_state));
             if (i.first.transition->condition.size() > 0) res += (" && (" + i.first.transition->condition + ")");
             res += (") {\n");
-            if (action.size() > 0) res+=("\t\t"+action+"\n");
+            if (action.size() > 0) res += action;
             if (i.second.size()>0) {
-                res += ("\t\t"+i.second+"\n");
+                res += i.second;
                 to_state_str = "0";
             } else to_state_str = std::to_string(i.first.to_state);
             res += ("\t\tnext_status = " + to_state_str + ";\n\t}\n");
